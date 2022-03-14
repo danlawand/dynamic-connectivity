@@ -23,6 +23,6 @@ void deleteEdge(int i, int j) {
 }
 
 int connected(int i, int j) {
-    if (findRoot(nodes[i]) == findRoot(nodes[j])) return 1;
+    if (findroot(nodes[i]) == findroot(nodes[j])) return 1;
     return 0;
 }

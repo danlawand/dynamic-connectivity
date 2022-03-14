@@ -33,7 +33,7 @@ void evert(Node v) {
 	reflectTree(v);
 }
 
-Node findRoot(Node v) {
+Node findroot(Node v) {
 	access(v);
 	Node m = minSplay(v);
 	return m;
