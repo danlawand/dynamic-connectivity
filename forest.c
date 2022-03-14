@@ -3,7 +3,7 @@
 #include <string.h>
 #include "forest.h"
 
-static Node *nodes; 
+static Node *nodes;
 
 Node dynamicForest(int n) {
     nodes = mallocSafe(n * sizeof(Node));
@@ -15,6 +15,7 @@ Node dynamicForest(int n) {
 }
 
 void addEdge(int i, int j) {
+    evert(nodes[i]);
     link(nodes[i], nodes[j]);
 }
 
