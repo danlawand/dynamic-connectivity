@@ -30,8 +30,8 @@ void reflectTree(Node v) {
 }
 
 void join(Node v, Node w) {
-	w->children[1] = v;
-	v->parent = w;
+	v->children[1] = w;
+	w->parent = v;
 }
 
 void split(Node x) {

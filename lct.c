@@ -25,7 +25,7 @@ void access(Node v) {
 void link(Node v, Node w) {
 	evert(v);
 	access(w);
-	join(v, w);
+	join(w, v);
 }
 
 void evert(Node v) {
