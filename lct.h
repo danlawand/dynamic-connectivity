@@ -1,7 +1,6 @@
 #ifndef _LCT_H
 #define _LCT_H
 #include "splay.h"
-#include <stdio.h>
 
 Node maketree();
 

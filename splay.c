@@ -1,5 +1,4 @@
 #include "splay.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 static int valor = 0;

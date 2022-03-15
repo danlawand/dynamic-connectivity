@@ -1,5 +1,5 @@
 #include "lct.h"
-#include <stdio.h>
+#include <stdlib.h>
 
 static void removePreferredChild(Node);
 static void switchPreferredChild(Node, Node);

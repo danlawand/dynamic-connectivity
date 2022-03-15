@@ -1,7 +1,6 @@
 #ifndef _SPLAY_H
 #define _SPLAY_H
 #include "node.h"
-#include <stdio.h>
 
 Node makeSplay();
 void splay(Node);
