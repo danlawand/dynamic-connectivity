@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 static int valor = 0;
-static Node  root;
+static Node root;
 
 static Node sibling(Node);
 
@@ -12,7 +12,7 @@ static void pushBitUp(Node);
 
 static void pushBitDown(Node);
 
-static void  rotate(Node);
+static void rotate(Node);
 
 static Node maximum(Node);
 
@@ -20,7 +20,7 @@ static Node minimum(Node);
 
 
 Node makeSplay() {
-	return newNode(valor++, NULL, NULL, NULL, NULL, 0);
+	return newNode(valor++, NULL, NULL, NULL, NULL, 0, 1);
 }
 
 void reflectTree(Node v) {
@@ -31,6 +31,7 @@ void reflectTree(Node v) {
 void join(Node v, Node w) {
 	v->children[1] = w;
 	w->parent = v;
+	v->N = v->N + w->N;
 }
 
 void split(Node x) {
@@ -40,6 +41,7 @@ void split(Node x) {
 	if (T != NULL) {
 		T->parent = NULL;
 		T->bit ^= x->bit;
+		x->N = x->N - T->N;
 	}
 	x->children[1 - x->bit] = NULL;
 }
@@ -73,15 +75,23 @@ static void rotate(Node x) {
 	Node p = x->parent;
 	Node g = p->parent;
 
+	int sizeChild = 0;
+
 	if (p->children[0] == x) {
 		p->children[0] = x->children[1];
-		if (x->children[1] != NULL) x->children[1]->parent = p;
+		if (x->children[1] != NULL) {
+			x->children[1]->parent = p;
+			sizeChild = x->children[1]->N;
+		}
 		x->children[1] = p;
 	}
 
 	else {
 		p->children[1] = x->children[0];
-		if (x->children[0] != NULL) x->children[0]->parent = p;
+		if (x->children[0] != NULL) {
+			x->children[0]->parent = p;
+			sizeChild = x->children[0]->N;
+		}
 		x->children[0] = p;
 	}
 	x->bit = p->bit;
@@ -89,10 +99,14 @@ static void rotate(Node x) {
 
 	p->parent = x;
 	x->parent = g;
+
 	if (g != NULL) {
 		if (p == g->children[0]) g->children[0] = x;
 		else g->children[1] = x;
 	}
+
+	p->N = p->N - x->N + sizeChild;
+	x->N = x->N - sizeChild + p->N; 
 }
 
 Node minSplay(Node x) {
