@@ -55,7 +55,7 @@ static void removePreferredChild(Node v) {
 	if (v->children[1] != NULL) {
 		v->children[1]->pathParent = v;
 		v->children[1]->parent = NULL;
-		pushBitDown(v->children[1]); // colocamos isso mas não sabemos se é necessário.
+		// pushBitDown(v->children[1]); // colocamos isso mas não sabemos se é necessário.
 		//Funcionou isso, mas ainda não sabemos o pq
 		// Em algum lugar do código devemos estar considerando que a raiz da splay só pode ter bit zero, mas não está explícito.
 
