@@ -12,10 +12,7 @@ static void swapChildren(Node);
 
 static void pushBitUp(Node);
 
-// static void pushBitDown(Node);
-
-///
-static void pushBitDownRec(Node);
+static void pushBitDown(Node);
 
 static void rotate(Node);
 
@@ -54,14 +51,14 @@ void split(Node x) {
 
 
 void splay (Node x) {
-	// pushBitUp(x);
+	pushBitUp(x);
 	while (x->parent != NULL) {
 		Node p = x->parent;
-		// pushBitUp(p);
+		pushBitUp(p);
 		if (p->parent == NULL) rotate(x);
 		else { 
 			Node g = p->parent;
-			// pushBitUp(g);
+			pushBitUp(g);
 			if (x->bit == 1 || p->bit == 1 || g->bit == 1) printf("*************** Erro: Algum bit é 1 no splay ***************\n");
 
 			// Zig-Zig ou Zag-Zag
@@ -140,7 +137,6 @@ static Node minimum(Node x) {
 	return minimum(x->children[x->bit]);
 }
 
-
 Node maxSplay(Node x) {
 	Node m = maximum(x);
 	splay(m);
@@ -170,7 +166,7 @@ static void pushBitUp(Node x) {
 }
 
 // Não se assume nada sobre o bit do x
-void pushBitDown(Node x) {
+static void pushBitDown(Node x) {
 	if (x->bit == 1) {
 		swapChildren(x);
 		x->bit = 0;
@@ -187,8 +183,11 @@ void pushBitDown(Node x) {
 	}
 }
 
-////
-static void pushBitDownRec(Node x) {
+// Função de uso apenas para o print final
+// Sempre é a raiz que chama
+void pushBitDownRec(Node x) {
+	if (x == NULL) return;
+
 	if (x->bit == 1) {
 		swapChildren(x);
 		x->bit = 0;
@@ -196,18 +195,16 @@ static void pushBitDownRec(Node x) {
 		Node cLeft = x->children[0];
 		if (cLeft != NULL) {
 			cLeft->bit = 1 - cLeft->bit;
-			pushBitDownRec(cLeft);
 		}
 
 		Node cRight = x->children[1];
 		if (cRight != NULL) {
 			cRight->bit = 1 - cRight->bit;
-			pushBitDownRec(cRight);
 		}
-		
 	}
+	pushBitDownRec(x->children[0]);
+	pushBitDownRec(x->children[1]);
 }
-
 
 static Node sibling(Node x) {
 	Node p = x->parent;

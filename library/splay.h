@@ -10,7 +10,7 @@ Node maxSplay(Node);
 Node minSplay(Node);
 void reflectTree(Node);
 
-void pushBitDown(Node);
+void pushBitDownRec(Node);
 
 
 void printSPLAY(Node, int);

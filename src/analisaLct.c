@@ -113,21 +113,22 @@ void qualEhOPreferredPath(Node x, FILE* fp) {
 	if (fp != NULL)	fprintf(fp, "Preferred Path: \n");
 	printf("Preferred Path: \n");
 	Node r = encontraRaiz(x);
+	pushBitDownRec(r);
 	printaCaminho(r, fp);
 	if (fp != NULL)	fprintf(fp, "\n");
 	printf("\n");
 }
 
 // função auxiliar de 'analisaSplay', para analisar em pre-ordem a splay
+// Invariante: Node x é a raiz de sua splay tree
 static void printaCaminho(Node x, FILE* fp) {
 	if (x == NULL) return;
 	printaCaminho(x->children[x->bit], fp);
 	if (fp != NULL)	fprintf(fp, "%d -> ", x->val);
-	printf("%d -> ", x->val);
+	printf("%d (bit: %d)-> ", x->val, x->bit);
 	printaCaminho(x->children[1-x->bit], fp);
 	return;
 }
-
 
 static Node encontraRaiz(Node x) {
 	Node k = x;
