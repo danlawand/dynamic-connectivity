@@ -10,8 +10,12 @@ struct node {
 	Node parent;
 	Node pathParent;
 	int bit;
-	int N;
+	int size;
 };
+
+//Node start ===> primeiro nó na lista dos non-preferred child dele
+//Node next  
+//Node prev
 
 Node newNode(Value, Node, Node, Node, Node, int, int);
 

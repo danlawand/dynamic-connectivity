@@ -14,4 +14,9 @@ void evert(Node);
 
 void cut(Node);
 
+int sizeLct(Node);
+
+// Operação dumb que só mostra qual é a raiz da árvore, sem mexer nela.
+Node findRootSemAccess(Node);
+
 #endif

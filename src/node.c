@@ -1,5 +1,6 @@
 #include "node.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static void *mallocSafe(size_t);
 
@@ -11,7 +12,7 @@ Node newNode(Value val, Node left, Node right, Node parent, Node pathParent, int
 	p->parent = parent;
 	p->pathParent = pathParent;
 	p->bit = bit;
-	p->N = N;
+	p->size = N;
 	return p;
 }
 

@@ -1,0 +1,35 @@
+Sobre o 0
+0->pathParent: 2
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: 2
+Preferred Path: 
+1 -> 
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+6 -> 2 -> 
+
+Sobre o 3
+3->pathParent: 5
+Preferred Path: 
+3 -> 
+
+Sobre o 4
+4->pathParent: 5
+Preferred Path: 
+4 -> 
+
+Sobre o 5
+5->pathParent: 2
+Preferred Path: 
+5 -> 
+
+Sobre o 6
+6->pathParent: Eh null
+Preferred Path: 
+6 -> 2 -> 
+

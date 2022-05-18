@@ -1,0 +1,706 @@
+---------------------- TESTE1 ----------------------
+5
++ 0 1
++ 1 2
++ 3 4
+
+--- RESPOSTA TESTE 1
+
+Sobre o 0
+0->pathParent: 1
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: Eh null
+Preferred Path: 
+2 -> 1 -> 
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+2 -> 1 -> 
+
+Sobre o 3
+3->pathParent: Eh null
+Preferred Path: 
+4 -> 3 -> 
+
+Sobre o 4
+4->pathParent: Eh null
+Preferred Path: 
+4 -> 3 -> 
+
+
+
+
+
+
+---------------------- TESTE2 ----------------------
+7
++ 0 1
++ 1 2
++ 3 4
++ 4 5
++ 2 5
++ 5 6
+
+--- RESPOSTA TESTE 2
+
+Sobre o 0
+0->pathParent: 1
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: 2
+Preferred Path: 
+1 -> 
+
+Sobre o 2
+2->pathParent: 5
+Preferred Path: 
+2 -> 
+
+Sobre o 3
+3->pathParent: 4
+Preferred Path: 
+3 -> 
+
+Sobre o 4
+4->pathParent: 5
+Preferred Path: 
+4 -> 
+
+Sobre o 5
+5->pathParent: Eh null
+Preferred Path: 
+6 -> 5 -> 
+
+Sobre o 6
+6->pathParent: Eh null
+Preferred Path: 
+6 -> 5 -> 
+
+---------------------- TESTE 3 ----------------------
+7
++ 1 2
++ 0 2
++ 4 5
++ 3 5
++ 2 5
++ 2 6 (Não sei se essa operação é válida, pois 2 não é a raiz da lct)
+
+--- RESPOSTA TESTE 3
+
+Sobre o 0
+0->pathParent: 2
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: 2
+Preferred Path: 
+1 -> 
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+6 -> 2 -> 
+
+Sobre o 3
+3->pathParent: 5
+Preferred Path: 
+3 -> 
+
+Sobre o 4
+4->pathParent: 5
+Preferred Path: 
+4 -> 
+
+Sobre o 5
+5->pathParent: 2
+Preferred Path: 
+5 -> 
+
+Sobre o 6
+6->pathParent: Eh null
+Preferred Path: 
+6 -> 2 -> 
+
+
+
+---------------------- TESTE 4 ----------------------
+/*Precisa do evert*/
+7
++ 0 1
++ 1 2
++ 3 4
++ 2 5
++ 5 6
++ 6 4
+
+--- RESPOSTA TESTE 4
+
+Sobre o 0
+0->pathParent: 1
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: 2
+Preferred Path: 
+1 -> 
+
+Sobre o 2
+2->pathParent: 5
+Preferred Path: 
+2 -> 
+
+Sobre o 3
+3->pathParent: 4
+Preferred Path: 
+3 -> 
+
+Sobre o 4
+4->pathParent: Eh null
+Preferred Path: 
+4 -> 6 -> 
+
+Sobre o 5
+5->pathParent: 6
+Preferred Path: 
+5 -> 
+
+Sobre o 6
+6->pathParent: Eh null
+Preferred Path: 
+4 -> 6 -> 
+
+
+---------------------- TESTE 5 ----------------------
+6
++ 0 1
++ 1 2
++ 3 4
++ 4 5
+
+
+--- RESPOSTA TESTE 5
+
+Sobre o 0
+0->pathParent: 1
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: Eh null
+Preferred Path: 
+2 -> 1 ->
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+2 -> 1 -> 
+
+Sobre o 3
+3->pathParent: 4
+Preferred Path: 
+3 -> 
+
+Sobre o 4
+4->pathParent: Eh null
+Preferred Path: 
+5 -> 4 -> 
+
+Sobre o 5
+5->pathParent: Eh null
+Preferred Path: 
+5 -> 4 -> 
+
+
+
+---------------------- TESTE 6 ----------------------
+6
++ 0 1
++ 1 2
++ 3 4
++ 4 5
+- 4
+
+
+--- RESPOSTA TESTE 6
+
+Sobre o 0
+0->pathParent: 1
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: Eh null
+Preferred Path: 
+2 -> 1 -> 
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+2 -> 1 -> 
+
+Sobre o 3
+3->pathParent: 4
+Preferred Path: 
+3 -> 
+
+Sobre o 4
+4->pathParent: Eh null
+Preferred Path: 
+4 -> 
+
+Sobre o 5
+5->pathParent: Eh null
+Preferred Path: 
+5 -> 
+
+
+---------------------- TESTE 7 ----------------------
+6
++ 0 1
++ 1 2
++ 3 4
++ 4 5
+- 4
++ 5 4
+
+
+--- RESPOSTA TESTE 7
+
+Sobre o 0
+0->pathParent: 1
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: Eh null
+Preferred Path: 
+2 -> 1 -> 
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+2 -> 1 -> 
+
+Sobre o 3
+3->pathParent: 4
+Preferred Path: 
+3 -> 
+
+Sobre o 4
+4->pathParent: Eh null
+Preferred Path: 
+4 -> 5 -> 
+
+Sobre o 5
+5->pathParent: Eh null
+Preferred Path: 
+4 -> 5 -> 
+
+
+---------------------- TESTE 8 ----------------------
+6
++ 0 1
++ 1 2
++ 3 4
++ 4 5
+- 4
++ 4 5
+
+
+--- RESPOSTA TESTE 8
+
+Sobre o 0
+0->pathParent: 1
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: Eh null
+Preferred Path: 
+2 -> 1 -> 
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+2 -> 1 -> 
+
+Sobre o 3
+3->pathParent: 4
+Preferred Path: 
+3 -> 
+
+Sobre o 4
+4->pathParent: Eh null
+Preferred Path: 
+5 -> 4 -> 
+
+Sobre o 5
+5->pathParent: Eh null
+Preferred Path: 
+5 -> 4 -> 
+
+
+---------------------- TESTE 9 ----------------------
+11 (Não usei o nó zero)
++ 5 1
++ 10 7
++ 7 6
++ 8 7
++ 9 8
++ 6 1
++ 3 2
++ 4 3
++ 1 4
+
+Sobre o 0
+0->pathParent: Eh null
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: Eh null
+Preferred Path: 
+2 -> 3 -> 4 -> 1 -> 
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+2 -> 3 -> 4 -> 1 -> 
+
+Sobre o 3
+3->pathParent: Eh null
+Preferred Path: 
+2 -> 3 -> 4 -> 1 -> 
+
+Sobre o 4
+4->pathParent: Eh null
+Preferred Path: 
+2 -> 3 -> 4 -> 1 -> 
+
+Sobre o 5
+5->pathParent: 1
+Preferred Path: 
+5 -> 
+
+Sobre o 6
+6->pathParent: 1
+Preferred Path: 
+6 -> 
+
+Sobre o 7
+7->pathParent: 6
+Preferred Path: 
+7 -> 8 -> 9 -> 
+
+Sobre o 8
+8->pathParent: Eh null
+Preferred Path: 
+7 -> 8 -> 9 -> 
+
+Sobre o 9
+9->pathParent: Eh null
+Preferred Path: 
+7 -> 8 -> 9 -> 
+
+Sobre o 10
+10->pathParent: 7
+Preferred Path: 
+10 -> 
+
+
+
+---------------------- TESTE 10 ----------------------
+11 (Não usei o nó zero)
++ 5 1
++ 10 7
++ 7 6
++ 8 7
++ 9 8
++ 6 1
++ 2 1
++ 3 2
++ 4 3
+
+
+Sobre o 0
+0->pathParent: Eh null
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: Eh null
+Preferred Path: 
+1 -> 2 -> 3 -> 4 -> 
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+1 -> 2 -> 3 -> 4 -> 
+
+Sobre o 3
+3->pathParent: Eh null
+Preferred Path: 
+1 -> 2 -> 3 -> 4 -> 
+
+Sobre o 4
+4->pathParent: Eh null
+Preferred Path: 
+1 -> 2 -> 3 -> 4 -> 
+
+Sobre o 5
+5->pathParent: 1
+Preferred Path: 
+5 -> 
+
+Sobre o 6
+6->pathParent: 1
+Preferred Path: 
+6 -> 
+
+Sobre o 7
+7->pathParent: 6
+Preferred Path: 
+7 -> 8 -> 9 -> 
+
+Sobre o 8
+8->pathParent: Eh null
+Preferred Path: 
+7 -> 8 -> 9 -> 
+
+Sobre o 9
+9->pathParent: Eh null
+Preferred Path: 
+7 -> 8 -> 9 -> 
+
+Sobre o 10
+10->pathParent: 7
+Preferred Path: 
+10 -> 
+
+
+---------------------- TESTE 11 ----------------------
+11 (Não usei o nó zero)
++ 5 1
++ 10 7
++ 7 6
++ 8 7
++ 9 8
++ 6 1
++ 3 2
++ 4 3
++ 1 4
+- 4
+- 3
++ 3 4
+
+
+Sobre o 0
+0->pathParent: Eh null
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: 4
+Preferred Path: 
+1 -> 
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+2 -> 
+
+Sobre o 3
+3->pathParent: Eh null
+Preferred Path: 
+4 -> 3 -> 
+
+Sobre o 4
+4->pathParent: Eh null
+Preferred Path: 
+4 -> 3 -> 
+
+Sobre o 5
+5->pathParent: 1
+Preferred Path: 
+5 -> 
+
+Sobre o 6
+6->pathParent: 1
+Preferred Path: 
+6 -> 
+
+Sobre o 7
+7->pathParent: 6
+Preferred Path: 
+7 -> 8 -> 9 -> 
+
+Sobre o 8
+8->pathParent: Eh null
+Preferred Path: 
+7 -> 8 -> 9 -> 
+
+Sobre o 9
+9->pathParent: Eh null
+Preferred Path: 
+7 -> 8 -> 9 -> 
+
+Sobre o 10
+10->pathParent: 7
+Preferred Path: 
+10 -> 
+
+
+
+---------------------- TESTE 12 ----------------------
+11 (Não usei o nó zero)
++ 5 1
++ 10 7
++ 7 6
++ 8 7
++ 9 8
++ 6 1
++ 3 2
++ 4 3
++ 1 4
+- 4
+- 3
++ 3 4
+- 8
+
+
+Sobre o 0
+0->pathParent: Eh null
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: Eh null
+Preferred Path: 
+4 -> 1 -> 6 -> 7 -> 
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+2 -> 
+
+Sobre o 3
+3->pathParent: 4
+Preferred Path: 
+3 -> 
+
+Sobre o 4
+4->pathParent: 7
+Preferred Path: 
+4 -> 1 -> 6 -> 7 -> 
+
+Sobre o 5
+5->pathParent: 1
+Preferred Path: 
+5 -> 
+
+Sobre o 6
+6->pathParent: Eh null
+Preferred Path: 
+4 -> 1 -> 6 -> 7 -> 
+
+Sobre o 7
+7->pathParent: Eh null
+Preferred Path: 
+4 -> 1 -> 6 -> 7 -> 
+
+Sobre o 8
+8->pathParent: Eh null
+Preferred Path: 
+8 -> 
+
+Sobre o 9
+9->pathParent: 8
+Preferred Path: 
+9 -> 
+
+Sobre o 10
+10->pathParent: 7
+Preferred Path: 
+10 -> 
+
+
+---------------------- TESTE 13 ----------------------
+11 (Não usei o nó zero)
++ 5 1
++ 10 7
++ 7 6
++ 8 7
++ 9 8
++ 6 1
++ 3 2
++ 4 3
++ 1 4
+- 4
+- 3
++ 3 4
+- 8
++ 7 9
+
+
+Sobre o 0
+0->pathParent: Eh null
+Preferred Path: 
+0 -> 
+
+Sobre o 1
+1->pathParent: Eh null
+Preferred Path: 
+6 -> 1 -> 4 -> 
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+2 -> 
+
+Sobre o 3
+3->pathParent: 4
+Preferred Path: 
+3 -> 
+
+Sobre o 4
+4->pathParent: Eh null
+Preferred Path: 
+6 -> 1 -> 4 -> 
+
+Sobre o 5
+5->pathParent: 1
+Preferred Path: 
+5 -> 
+
+Sobre o 6
+6->pathParent: 7
+Preferred Path: 
+6 -> 1 -> 4 -> 
+
+Sobre o 7
+7->pathParent: Eh null
+Preferred Path: 
+8 -> 9 -> 7 -> 
+
+Sobre o 8
+8->pathParent: Eh null
+Preferred Path: 
+8 -> 9 -> 7 -> 
+
+Sobre o 9
+9->pathParent: Eh null
+Preferred Path: 
+8 -> 9 -> 7 -> 
+
+Sobre o 10
+10->pathParent: 7
+Preferred Path: 
+10 -> 

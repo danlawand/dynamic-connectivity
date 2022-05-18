@@ -10,4 +10,11 @@ Node maxSplay(Node);
 Node minSplay(Node);
 void reflectTree(Node);
 
+void pushBitDown(Node);
+
+
+void printSPLAY(Node, int);
+// Operação dumb Serve apenas para o print
+Node minimumSemMudanca(Node);
+
 #endif
