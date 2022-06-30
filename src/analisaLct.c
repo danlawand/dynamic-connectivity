@@ -154,6 +154,18 @@ void analisaNode(Node x, FILE* fp) {
 	// quemEhMinimumNaArvore(x, fp);
 	qualEhOPreferredPath(x, fp);
 
+	
+	//
+	fprintf(fp, "Lista de nonPreferredChildren:\n");
+	Celula p = (x->lista).next;
+    while(p != &(x->lista) ) {
+        // splay(p->no);
+        fprintf(fp, "%d, ", p->no->val);
+		// percurso(p->no);
+        p = p->next;
+    }
+	fprintf(fp, "\n");
+
 	//qual é o size
 	// int k = sizeLct(x);
 	// printf("Size: %d\n", k);

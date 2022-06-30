@@ -4,7 +4,7 @@
 
 static void *mallocSafe(size_t);
 
-Node newNode(Value val, Node left, Node right, Node parent, Node pathParent, int bit, int N) {
+Node newNode(Value val, Node left, Node right, Node parent, Node pathParent, int bit, int size, int level) {
 	Node p = mallocSafe(sizeof(*p));
 	p->val = val;
 	p->children[1] = right;
@@ -12,22 +12,22 @@ Node newNode(Value val, Node left, Node right, Node parent, Node pathParent, int
 	p->parent = parent;
 	p->pathParent = pathParent;
 	p->bit = bit;
-	p->size = N;
+	p->size = size;
 	
-	//list of Non Preferred Children nodes
+	//list of Non Preferred Children nodes of this node
 	(p->lista).next = &p->lista;
 	(p->lista).prev = &p->lista;
 
+	// cel of this node in the list of Non Preferred Children of its own pathParent
 	p->cel = NULL;
-	return p;
-}
 
-Celula newCelula(Celula prev, Celula next, Node v) {
-    Celula c = mallocSafe(sizeof(*c));
-    c->next = next;
-    c->prev = prev;
-    c->no = v;
-	return c;
+	//*** Atributos usados apenas para nós arestas
+	p->n_levelEdges = 0;
+	p->edgeLevel = level;
+	p->edgeNode1 = NULL;
+	p->edgeNode2 = NULL;
+
+	return p;
 }
 
 void freeCelula(Celula c) {
@@ -38,28 +38,31 @@ void freeCelula(Celula c) {
 }
 
 //	insere w na lista de nonPreferredChildren de v
-void push_queue(Node v, Node w) {
-	Celula c = newCelula((v->lista).prev, (v->lista).next, w);
-	c->prev->next = c;
-	c->next->prev = c;
-}
+void push_nonPreferredChild(Node v, Node w) {
+	Celula c = mallocSafe(sizeof(*c));
+    c->prev = &(v->lista);
+    c->next = (v->lista).next;
+	(v->lista).next->prev = c;
+	(v->lista).next = c;
 
+    c->no = w;
+	w->cel = c;
+
+}
 //	remove v da lista de nonPreferredChildren em que este pertence
-void pop_queue(Node v) {
+void pop_nonPreferredChild(Node v) {
 	Celula cV = v->cel;
 	cV->prev->next = cV->next;
 	cV->next->prev = cV->prev;
-	cV->next = NULL;
-	cV->prev = NULL;
+	freeCelula(cV);
 }
 
 // Na lista do w, tiro o v e insiro o u
-void exchange_queue(Node v, Node u) {
+void exchange_nonPreferredChild(Node v, Node u) {
 	u->cel = v->cel;
 	u->cel->no = u;
 	v->cel = NULL;
 }
-
 
 static void *mallocSafe(size_t nbytes) {
 	void *p = malloc(nbytes);

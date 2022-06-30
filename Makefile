@@ -19,7 +19,7 @@ TARGET1 := exe
 # TARGET2 := automatic_exe
 
 # Files to compile
-OBJ_iterative := client.o analisaLct.o forest.o lct.o splay.o node.o item.o
+OBJ_iterative := client.o analisaLct.o forest.o lct.o splay.o queue.o node.o item.o
 
 OBJ1 := $(patsubst %,$(OBJ_PATH)%,$(OBJ_iterative))
 

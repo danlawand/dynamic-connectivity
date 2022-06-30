@@ -22,7 +22,7 @@ static Node minimum(Node);
 
 
 Node makeSplay() {
-	return newNode(valor++, NULL, NULL, NULL, NULL, 0, 1);
+	return newNode(valor++, NULL, NULL, NULL, NULL, 0, 1, -1);
 }
 
 
@@ -90,6 +90,10 @@ static void rotate(Node x) {
 	// L.83 e 84 lidam com path parent
 	x->pathParent = p->pathParent;
 	p->pathParent = NULL;
+
+	// Lidam com a célula de nonPreferredChild
+	x->cel = p->cel;
+	p->cel = NULL;
 
 	if (p->children[0] == x) {
 		p->children[0] = x->children[1];

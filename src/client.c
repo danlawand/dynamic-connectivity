@@ -61,7 +61,7 @@ int main(int argc, char * argv[]) {
 	indice[0] = 0;
 	indice[1] = 0;
 
-	Node *nodes;
+	LCT linkCutTree;
 
 	/* le do arquivo */
     while(fscanf(arquivo_entrada, "%s", buffer) && !feof(arquivo_entrada)){
@@ -70,8 +70,8 @@ int main(int argc, char * argv[]) {
     	if (i == 1){
     		n_vertices = atoi(buffer);
 
-    		//Crio 'n_vertices' árvores com apenas um vértice cada (Cada nodes[i] é a raiz de sua árvore)
-    		nodes = dynamicForest(n_vertices);
+    		//Crio 'n_vertices' árvores com apenas um vértice cada (Cada linkCutTree->nodes[i] é a raiz de sua árvore)
+    		linkCutTree->nodes = dynamicForest(n_vertices);
 
 
 			// if (flag_output == 'v') printf("%d Vertices Criados\n",n_vertices);
@@ -96,9 +96,9 @@ int main(int argc, char * argv[]) {
 
 				// Print Verboso ou não
 				// if (flag_output == 'v') {
-				// 	analisaSplay(nodes[indice[tag_link-1]]);
+				// 	analisaSplay(linkCutTree->nodes[indice[tag_link-1]]);
 				// 	printf("\n");
-				// 	printSPLAY(nodes[indice[tag_link-1]], 1);
+				// 	printSPLAY(linkCutTree->nodes[indice[tag_link-1]], 1);
 				// 	printf("\n");
 				// }
     		}
@@ -119,9 +119,9 @@ int main(int argc, char * argv[]) {
 
 			// Print Verboso ou não
 			// if (flag_output == 'v') {
-			// 	analisaSplay(nodes[indice[0]]);
+			// 	analisaSplay(linkCutTree->nodes[indice[0]]);
 			// 	printf("\n");
-			// 	printSPLAY(nodes[indice[0]], 1);
+			// 	printSPLAY(linkCutTree->nodes[indice[0]], 1);
 			// 	printf("\n");
 			// }
     		tag_cut++;
@@ -145,8 +145,10 @@ int main(int argc, char * argv[]) {
 	for (int i = 0; i < n_vertices; ++i)
 	{
 		//Analiso cada nó, para ver como foi seu comportamento.
-		analisaNode(nodes[i], arquivo_de_saida);
+		analisaNode(linkCutTree->nodes[i], arquivo_de_saida);
 	}
+
+	inorderTraversal(1);
 
 	fclose(arquivo_de_saida);
 	fclose (arquivo_entrada);

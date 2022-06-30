@@ -1,5 +1,6 @@
 #include "lct.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static void removePreferredChild(Node);
 static void switchPreferredChild(Node, Node);
@@ -69,7 +70,7 @@ int sizeLct(Node v) {
 //-----------------------------------------------------
 
 
-
+// v é raiz de sua splay tree
 // remove o preferred child de v
 static void removePreferredChild(Node v) {
 	if (v->children[1] != NULL) {
@@ -84,7 +85,8 @@ static void removePreferredChild(Node v) {
 }
 
 
-
+// w é o v->pathParent; 
+// w e v são raizes de suas splay trees
 // torna v o preferred child de w. E ao antigo preferred child de w, o faz ser non-preferred-child e este tem o pathParent apontando para w.  
 static void switchPreferredChild(Node w, Node v) {
 	if (w->children[1] != NULL) {
@@ -92,12 +94,25 @@ static void switchPreferredChild(Node w, Node v) {
 		w->children[1]->parent = NULL;
 
 		// Na lista do w, tiro o v e insiro o w->children[1]
+		// v e w->children[1] são raizes
 		exchangeNonPreferredChildren(v, w->children[1]);
 
 	} else {
 		// removo o v da lista do w. 
 		//Como v faz parte apenas de uma única lista, pois é filho não preferencial de apenas um pai, logo não preciso indicar sobre qual lista estou removendo. 
 		removeNonPreferredChildren(v);
+
+		// Inseri as seguintes linhas na rotina rotate:
+		/*
+			// Lidam com a célula de nonPreferredChild
+			x->cel = p->cel;
+			p->cel = NULL;
+		*/
+		// Estou fazendo a raiz da splay tree carregar o apontador à celula que identifica qual nó é o nonPreferredChild do nó pathParent, indicado pelo ponteiro pathParent da raiz.
+		// A raiz tem o ponteiro pathParent que identifica que há uma aresta entre o pathParent e o nó de menor profundidade desta árvore.
+		// Além disso, carrega o ponteiro 'cel', que indentifica a célula que está na lista dos nonPreferredChildren do pathParent. 
+		// Esta célula segue com o comportamento normal em relação à lista ligada. Mas ela possui um ponteiro para o nó que de fato tem uma aresta com o pathParent. Que é o nó de menor profundidade desta árvore. 
+
 	}
 	join(w, v);
 
@@ -106,17 +121,20 @@ static void switchPreferredChild(Node w, Node v) {
 
 //	insere w na lista de nonPreferredChildren de v
 static void insertNonPreferredChildren(Node v, Node w) {
-	push_queue(v, w);
+	// printf("Insere %d na lista de %d\n", w->val, v->val);
+	push_nonPreferredChild(v, w);
 }
 
 //	remove v da lista de nonPreferredChildren em que este pertence
 static void removeNonPreferredChildren(Node v) {
-	pop_queue(v);
+	// printf("Remove %d da lista em que está\n", v->val);
+	pop_nonPreferredChild(v);
 }
 
 // Na lista de nonPreferredChildren de w, tiro o v e insiro o u
 static void exchangeNonPreferredChildren(Node v, Node u) {
-	exchange_queue(v, u);
+	// printf("Insere %d, e retira %d\n", v->val, u->val);
+	exchange_nonPreferredChild(v, u);
 }
 
 // Operação dumb que só mostra qual é a raiz da árvore, sem mexer nela.
