@@ -20,6 +20,16 @@ Node maketree(int nivel) {
 void access(Node v) {
 	Node w;
 	splay(v);
+
+	/* Comentário 14/07/2022
+		deveria se acrescentar um pushBitDown aqui,
+		porque com a alteração que eu fiz na rotina splay 
+		(pushBitDown ao invés de pushBitUp),
+		é possível que algum filho fique com bit 1. 
+		Assim, ao fazer a operação removePreferredChild,
+		um filho não preferencial se torna raiz da sua splay
+		e possui bit 1.
+	*/
 	removePreferredChild(v);
 
 	while (v->pathParent != NULL) {
@@ -57,6 +67,10 @@ Node findroot(Node v) {
 // retira a aresta 'v'-ij-'v->parent'
 void cut(Node v) {
 	access(v);
+
+	int valor = -1;
+	if (v->children[0] != NULL) valor = v->children[0]->val;
+	printf("v:%d, v->right:%d\n", v->val, valor);
 
 	Node m = maxSplay(v->children[0]);
 	split(m);

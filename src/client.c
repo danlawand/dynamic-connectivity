@@ -88,18 +88,27 @@ int main(int argc, char * argv[]) {
     		if (tag_link == 1) {
 
 				// Print Verboso ou não
-    			// if (flag_output == 'v') printf("----- Link dos Vertices %d e %d -----\n",indice[tag_link-1], indice[tag_link]);
+    			if (flag_output == 'v') printf("------------------------------ Link dos Vertices %d e %d ------------------------------\n",indice[tag_link-1], indice[tag_link]);
 
                 // ADD EDGE
                 addEdge(linkCutTree, indice[tag_link-1], indice[tag_link]);
 
+				if (flag_output == 'v') {
+					printf("\n*********** Depois do Link ***********\n");
+					for (int i = 0; i < n_vertices; i++) {
+						printf("\n");
+						analisaSplay(linkCutTree->nodes[i]);
+						printf("\n");
+					}
+				}
+
 				// Print Verboso ou não
-				// if (flag_output == 'v') {
-				// 	analisaSplay(linkCutTree->nodes[indice[tag_link-1]]);
-				// 	printf("\n");
-				// 	printSPLAY(linkCutTree->nodes[indice[tag_link-1]], 1);
-				// 	printf("\n");
-				// }
+				if (flag_output == 'v') {
+					analisaSplay(linkCutTree->nodes[indice[tag_link-1]]);
+					printf("\n");
+					// printSPLAY(linkCutTree->nodes[indice[tag_link-1]], 1);
+					printf("\n");
+				}
     		}
     		tag_link++;
     	}
@@ -110,17 +119,33 @@ int main(int argc, char * argv[]) {
     		indice[tag_cut] = atoi(buffer);
 
 			// Print verbose ou não
-    		// if (flag_output == 'v') printf("----- Cut do Vertice %d -----\n",indice[0]);
 
 			if (tag_cut == 1) {
 				// DELETE EDGE (O SEGUNDO ARGUMENTO É ZERO PORQUE JÁ SABEMOS QUE QUEREMOS CORTAR O NÓ COM O SEU PAI)
+
+    			if (flag_output == 'v') printf("------------------------------ Cut dos Vertices %d e %d ------------------------------\n",indice[0], indice[1]);
+
 				deleteEdge(linkCutTree, indice[tag_cut-1], indice[tag_cut]);
 
 				// Print Verboso ou não
+				if (flag_output == 'v') {
+					printf("\n*********** Depois do Delete ***********\n");
+					for (int i = 0; i < n_vertices; i++) {
+						printf("\n");
+						analisaSplay(linkCutTree->nodes[i]);
+						printf("\n");
+					}
+				}
 				// if (flag_output == 'v') {
+				// 	printf("\nDepois do Delete\n");
 				// 	analisaSplay(linkCutTree->nodes[indice[0]]);
 				// 	printf("\n");
-				// 	printSPLAY(linkCutTree->nodes[indice[0]], 1);
+				// 	// printSPLAY(linkCutTree->nodes[indice[0]], 1);
+				// 	printf("\n");
+
+				// 	analisaSplay(linkCutTree->nodes[indice[1]]);
+				// 	printf("\n");
+				// 	// printSPLAY(linkCutTree->nodes[indice[1]], 1);
 				// 	printf("\n");
 				// }
 			}

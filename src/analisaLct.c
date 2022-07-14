@@ -8,6 +8,9 @@ static Node encontraRaiz(Node x);
 
 static void printaCaminho(Node, FILE*);
 
+static Node raizSplay(Node);
+
+
 void quemEhDireito(Node x, FILE* fp) {
 	if (x == NULL) return;
 
@@ -187,14 +190,28 @@ void analisaNode(Node x, FILE* fp) {
 
 void analisaSplay(Node x) {
 	if (x == NULL) return;
-	if (x->parent != NULL) x = findRootSemAccess(x);
-	analisaPreOrdemSplay(x);
+	printf("Sobre o %d\n", x->val);
+	quemEhDireito(x, NULL);
+	quemEhEsquerdo(x, NULL);
+	quemEhPai(x, NULL);
+	quemEhPathParent(x, NULL);
+
+	// if (x->parent != NULL) x = findRootSemAccess(x);
+	Node r = raizSplay(x);
+	printf("[Sem ordem]Quem tá na SplayTree:\n");
+	analisaPreOrdemSplay(r);
+}
+
+static Node raizSplay(Node x) {
+	if (x->parent == NULL) return x;
+	raizSplay(x->parent);
 }
 
 // função auxiliar de 'analisaSplay', para analisar em pre-ordem a splay
 static void analisaPreOrdemSplay(Node x) {
 	if (x == NULL) return;
-	analisaNode(x, NULL);
-	analisaPreOrdemSplay(x->children[1-x->bit]);
-	analisaPreOrdemSplay(x->children[x->bit]);
+	// analisaNode(x, NULL);
+	printf("%d:%d - ", x->val,x->bit);
+	analisaPreOrdemSplay(x->children[0]);
+	analisaPreOrdemSplay(x->children[1]);
 }

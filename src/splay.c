@@ -54,15 +54,45 @@ void split(Node x) {
 }
 
 
+/* Comentário 14/07/2022
+	Necessária alteração no splay:
+	Se eu faço splay(3)
+	Para uma splay tree assim:
+	(a raiz é o topo)
+	     4:0
+			  3:1
+		   2:0
+	Iria fazer o pushBitUp(3): [da linha 75]
+	    4:1
+	  3:0
+	2:0
+
+	Depois o pushBitUp(4): [da linha 78]
+	     4:0
+			  3:0
+		   2:0	
+	Assim ficou errado, pois a árvore mudou completamente.
+
+	Após isso, seria feito o splay que resultaria no seguinte erro:
+		 3:0
+	  4:0
+	  	2:0
+
+	-----------------
+	Alterei o pushBitUp para pushBitDown, e aparentemente funcionou
+
+
+*/
+
 void splay (Node x) {
-	pushBitUp(x);
+	pushBitDown(x);//pushBitUp(x);//???
 	while (x->parent != NULL) {
 		Node p = x->parent;
-		pushBitUp(p);
+		pushBitDown(x);//pushBitUp(p);//???
 		if (p->parent == NULL) rotate(x);
 		else { 
 			Node g = p->parent;
-			pushBitUp(g);
+			pushBitDown(x);//pushBitUp(g);
 			if (x->bit == 1 || p->bit == 1 || g->bit == 1) printf("*************** Erro: Algum bit é 1 no splay ***************\n");
 
 			// Zig-Zig ou Zag-Zag
@@ -182,6 +212,7 @@ static void pushBitUp(Node x) {
 
 // Não se assume nada sobre o bit do x
 static void pushBitDown(Node x) {
+	printf("		x->val: %d\n", x->val);
 	if (x->bit == 1) {
 		swapChildren(x);
 		x->bit = 0;

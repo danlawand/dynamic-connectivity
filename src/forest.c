@@ -46,14 +46,14 @@ void addEdge(LCT lc, int i, int j) {
 
 // Não verifico se i-j é uma aresta
 void deleteEdge(LCT lc, int i, int j) {
-    cut(lc->nodes[i]);
+    // cut(lc->nodes[i]);
 
 
     // A rotina evert aqui é para garantir que o i seja o pai de j na LCT.
-    // evert(lc->nodes[i]);
+    evert(lc->nodes[i]);
     // Após isso, o cut(j) é garantido que corto a aresta i-j e não outra.
             // Antes, não teríamos essa garantia. Porque i poderia ser filho de j na LCT. Assim, não cortaria a aresta i-j, mas sim j-parent(j).
-    // cut(lc->nodes[j]);
+    cut(lc->nodes[j]);
 }
 
 int connected(LCT lc, int i, int j) {
