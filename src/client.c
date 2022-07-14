@@ -62,7 +62,6 @@ int main(int argc, char * argv[]) {
 	indice[1] = 0;
 
 	LCT linkCutTree;
-	Node* nodes;
 
 	/* le do arquivo */
     while(fscanf(arquivo_entrada, "%s", buffer) && !feof(arquivo_entrada)){
@@ -72,9 +71,7 @@ int main(int argc, char * argv[]) {
     		n_vertices = atoi(buffer);
 
     		//Crio 'n_vertices' árvores com apenas um vértice cada (Cada linkCutTree->nodes[i] é a raiz de sua árvore)
-    		// linkCutTree = dynamicForest(n_vertices);
-			nodes = dynamicForest(n_vertices);
-
+    		linkCutTree = dynamicForest(n_vertices);
 
 			// if (flag_output == 'v') printf("%d Vertices Criados\n",n_vertices);
     	}
@@ -148,7 +145,7 @@ int main(int argc, char * argv[]) {
 	for (int i = 0; i < n_vertices; ++i)
 	{
 		//Analiso cada nó, para ver como foi seu comportamento.
-		analisaNode(nodes[i], arquivo_de_saida);
+		analisaNode(linkCutTree->nodes[i], arquivo_de_saida);
 	}
 
 	for (int i = 0; i < n_vertices; i++) {
