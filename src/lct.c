@@ -33,20 +33,13 @@ void access(Node v) {
 // v e w estão em árvores distintas
 // v is deeper than w in the represented tree.
 // So min(w) of auxiliary tree is the root of the represented tree
+// W se torna a raiz da lct e o caminho preferencial vai até V
 void link(Node v, Node w) {
 	access(v);
 	access(w);
+	
+	// Torna v filho direito de w na splay tree
 	join(w, v);
-}
-
-int hashing(int i, int j) {
-	if (j > i) {
-		int temp = i;
-		i = j;
-		j = temp;	
-	}
-	int index = ((i+1)*i)/2;
-	return index - (i - j);
 }
 
 // torna v raíz da LCT
@@ -61,7 +54,7 @@ Node findroot(Node v) {
 	return m;
 }
 
-// retira a aresta 'v'-'v->parent'
+// retira a aresta 'v'-ij-'v->parent'
 void cut(Node v) {
 	access(v);
 

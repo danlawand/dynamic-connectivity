@@ -12,13 +12,13 @@ LCT dynamicForest(int);
 
 void addEdge(LCT, int, int);
 
-void deleteEdge(int, int);
+void deleteEdge(LCT, int, int);
 
-int connected(int, int);
+int connected(LCT, int, int);
 
-int sizeTree(int);
+int sizeTree(LCT, int);
 
-void inorderTraversal(int v);
+void inorderTraversal(LCT, int v);
 // void bfsTraversal(int v);
 
 // Seria bom ter um freeForest, freeLCT, freeSplay, freeNode ...

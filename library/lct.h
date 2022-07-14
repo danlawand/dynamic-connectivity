@@ -16,8 +16,6 @@ void cut(Node);
 
 int sizeLct(Node);
 
-int hashing(int i, int j);
-
 // Operação dumb que só mostra qual é a raiz da árvore, sem mexer nela.
 Node findRootSemAccess(Node);
 

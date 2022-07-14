@@ -7,17 +7,11 @@ static void *mallocSafe(size_t);
 static void percursoNode(Node);
 static void percursoEdge(Node);
 
-static Node *nodes;
-static int N;
-
-static int **adj;
-
-// LCT vai ser um vetor de nós e nível
-// Posso criar um struct chamado LCT que contém o vetor dos nós, e o valor do nível
+// LCT é um struct que possui vetor de nós e nível
 LCT dynamicForest(int n) {
     LCT linkCutTree = mallocSafe(sizeof(LCT));
 
-    nodes = mallocSafe(n * sizeof(Node));
+    Node* nodes = mallocSafe(n * sizeof(Node));
 
     for (int i = 0; i < n; ++i) {
         // passo o -1 aqui como nivel
@@ -29,19 +23,18 @@ LCT dynamicForest(int n) {
 }
 
 
-// void addEdge(LCT lc, int i, int j)
 void addEdge(LCT lc, int i, int j) {
     // evert(nodes[i]);
     // link(nodes[i], nodes[j]);
 
 
+    int level = 0;
 
+    // faço um maketree para criar a aresta ij, e adiciono o nivel da aresta
+    Node ij = makeTree(level);
 
-    // faço um maketree para criar a aresta ij, 
-    // vou add o nivel da aresta
-    Node ij = makeTree(LEVEL);
-
-    if (LEVEL == lc->lctLevel) ij->n_levelEdges = 1;
+    // Se o nível da aresta for o nível da lct 
+    if (level == lc->lctLevel) ij->n_levelEdges = 1;
 
     link(ij, lc->nodes[j]);
     evert(lc->nodes[i]);
@@ -49,30 +42,29 @@ void addEdge(LCT lc, int i, int j) {
 }
 
 // Não verifico se i-j é uma aresta
-// void deleteEdge(LCT lc, int i, int j)
-void deleteEdge(int i, int j) {
+void deleteEdge(LCT lc, int i, int j) {
     // A rotina evert aqui é para garantir que o i seja o pai de j na LCT.
-    evert(nodes[i]);
+    evert(lc->nodes[i]);
     // Após isso, o cut(j) é garantido que corto a aresta i-j e não outra.
             // Antes, não teríamos essa garantia. Porque i poderia ser filho de j na LCT. Assim, não cortaria a aresta i-j, mas sim j-parent(j).
-    cut(nodes[j]);
+    cut(lc->nodes[j]);
 }
 
-int connected(int i, int j) {
-    if (findroot(nodes[i]) == findroot(nodes[j])) return 1;
+int connected(LCT lc, int i, int j) {
+    if (findroot(lc->nodes[i]) == findroot(lc->nodes[j])) return 1;
     return 0;
 }
 
-int sizeTree(int i) {
-    access(nodes[i]);
-    return sizeLct(nodes[i]);
+int sizeTree(LCT lc, int i) {
+    access(lc->nodes[i]);
+    return sizeLct(lc->nodes[i]);
 }
 
 
-void inorderTraversal(int i) {
+void inorderTraversal(LCT lc, int i) {
     printf("inorderTraversal ");
-    access(nodes[i]);
-    percursoNode(nodes[i]);
+    access(lc->nodes[i]);
+    percursoNode(lc->nodes[i]);
     printf("\n\n");
 }
 

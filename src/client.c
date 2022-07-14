@@ -92,7 +92,7 @@ int main(int argc, char * argv[]) {
     			// if (flag_output == 'v') printf("----- Link dos Vertices %d e %d -----\n",indice[tag_link-1], indice[tag_link]);
 
                 // ADD EDGE
-                addEdge(indice[tag_link-1], indice[tag_link]);
+                addEdge(linkCutTree, indice[tag_link-1], indice[tag_link]);
 
 				// Print Verboso ou não
 				// if (flag_output == 'v') {
@@ -115,7 +115,7 @@ int main(int argc, char * argv[]) {
 
 			
             // DELETE EDGE (O SEGUNDO ARGUMENTO É ZERO PORQUE JÁ SABEMOS QUE QUEREMOS CORTAR O NÓ COM O SEU PAI)
-			deleteEdge(indice[0], 0);
+			deleteEdge(linkCutTree, indice[0], 0);
 
 			// Print Verboso ou não
 			// if (flag_output == 'v') {
@@ -150,7 +150,7 @@ int main(int argc, char * argv[]) {
 
 	for (int i = 0; i < n_vertices; i++) {
 		printf("Chamada de %d:\n", i);
-		inorderTraversal(i);
+		inorderTraversal(linkCutTree, i);
 		printf("\n\n");
 
 	}
