@@ -4,7 +4,7 @@
 #include "forest.h"
 #include <analisaLct.h>
 
-// static void *mallocSafe(size_t);
+static void *mallocSafe(size_t);
 #define TAMANHO_MAX 200
 
 
@@ -57,11 +57,12 @@ int main(int argc, char * argv[]) {
 	int n_vertices;
 
 	//variáveis auxiliares
-	int indice[2], tag_link = 2, tag_cut = 0, i = 1;
+	int indice[2], tag_link = 2, tag_cut = 2, i = 1;
 	indice[0] = 0;
 	indice[1] = 0;
 
 	LCT linkCutTree;
+	Node* nodes;
 
 	/* le do arquivo */
     while(fscanf(arquivo_entrada, "%s", buffer) && !feof(arquivo_entrada)){
@@ -71,7 +72,8 @@ int main(int argc, char * argv[]) {
     		n_vertices = atoi(buffer);
 
     		//Crio 'n_vertices' árvores com apenas um vértice cada (Cada linkCutTree->nodes[i] é a raiz de sua árvore)
-    		linkCutTree->nodes = dynamicForest(n_vertices);
+    		// linkCutTree = dynamicForest(n_vertices);
+			nodes = dynamicForest(n_vertices);
 
 
 			// if (flag_output == 'v') printf("%d Vertices Criados\n",n_vertices);
@@ -146,7 +148,7 @@ int main(int argc, char * argv[]) {
 	for (int i = 0; i < n_vertices; ++i)
 	{
 		//Analiso cada nó, para ver como foi seu comportamento.
-		analisaNode(linkCutTree->nodes[i], arquivo_de_saida);
+		analisaNode(nodes[i], arquivo_de_saida);
 	}
 
 	for (int i = 0; i < n_vertices; i++) {
@@ -160,11 +162,11 @@ int main(int argc, char * argv[]) {
 	fclose (arquivo_entrada);
 }
 
-// static void *mallocSafe(size_t nbytes) {
-// 	void *p = malloc(nbytes);
-// 	if (p == NULL) {
-// 		printf("Erro: alocação de memória falhou no módulo node.\n");
-// 		exit(0);
-// 	}
-// 	return p;
-// }
+static void *mallocSafe(size_t nbytes) {
+	void *p = malloc(nbytes);
+	if (p == NULL) {
+		printf("Erro: alocação de memória falhou no módulo node.\n");
+		exit(0);
+	}
+	return p;
+}

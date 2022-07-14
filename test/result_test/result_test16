@@ -1,0 +1,21 @@
+Sobre o 0
+0->pathParent: Eh null
+Preferred Path: 
+0 -> 2 -> 1 -> 
+Lista de nonPreferredChildren:
+
+
+Sobre o 1
+1->pathParent: Eh null
+Preferred Path: 
+0 -> 2 -> 1 -> 
+Lista de nonPreferredChildren:
+
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+0 -> 2 -> 1 -> 
+Lista de nonPreferredChildren:
+
+

@@ -8,7 +8,7 @@ struct lct {
     int lctLevel;
 };
 
-LCT dynamicForest(int);
+Node* dynamicForest(int);
 
 void addEdge(LCT, int, int);
 
