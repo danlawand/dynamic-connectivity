@@ -106,35 +106,36 @@ int main(int argc, char * argv[]) {
     	}
 
     	//tag_cut indica se haverá cut ou não
-    	if (tag_cut == 1) {
+    	if (tag_cut < 2) {
     		//Identifico o índice do vértice que realizaremos a operação, e atribuo no indice[0]
-    		indice[0] = atoi(buffer);
+    		indice[tag_cut] = atoi(buffer);
 
 			// Print verbose ou não
     		// if (flag_output == 'v') printf("----- Cut do Vertice %d -----\n",indice[0]);
 
-			
-            // DELETE EDGE (O SEGUNDO ARGUMENTO É ZERO PORQUE JÁ SABEMOS QUE QUEREMOS CORTAR O NÓ COM O SEU PAI)
-			deleteEdge(linkCutTree, indice[0], 0);
+			if (tag_cut == 1) {
+				// DELETE EDGE (O SEGUNDO ARGUMENTO É ZERO PORQUE JÁ SABEMOS QUE QUEREMOS CORTAR O NÓ COM O SEU PAI)
+				deleteEdge(linkCutTree, indice[tag_cut-1], indice[tag_cut]);
 
-			// Print Verboso ou não
-			// if (flag_output == 'v') {
-			// 	analisaSplay(linkCutTree->nodes[indice[0]]);
-			// 	printf("\n");
-			// 	printSPLAY(linkCutTree->nodes[indice[0]], 1);
-			// 	printf("\n");
-			// }
+				// Print Verboso ou não
+				// if (flag_output == 'v') {
+				// 	analisaSplay(linkCutTree->nodes[indice[0]]);
+				// 	printf("\n");
+				// 	printSPLAY(linkCutTree->nodes[indice[0]], 1);
+				// 	printf("\n");
+				// }
+			}
     		tag_cut++;
     	}
 
 
     	if (buffer[0] == '+') {
     		tag_link = 0;
-    		tag_cut = 0;
+    		tag_cut = 2;
     	}
 
     	if (buffer[0] == '-') {
-    		tag_cut = 1;
+    		tag_cut = 0;
     		tag_link = 2;
     	}
 
