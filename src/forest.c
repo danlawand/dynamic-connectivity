@@ -24,30 +24,33 @@ LCT dynamicForest(int n) {
 
 
 void addEdge(LCT lc, int i, int j) {
-    // evert(nodes[i]);
-    // link(nodes[i], nodes[j]);
-
-
-    int level = 0;
-
-    // faço um maketree para criar a aresta ij, e adiciono o nivel da aresta
-    Node ij = makeTree(level);
-
-    // Se o nível da aresta for o nível da lct 
-    if (level == lc->lctLevel) ij->n_levelEdges = 1;
-
-    link(ij, lc->nodes[j]);
     evert(lc->nodes[i]);
-    link(lc->nodes[i], ij);
+    link(lc->nodes[i], lc->nodes[j]);
+
+
+    // int level = 0;
+
+    // // faço um maketree para criar a aresta ij, e adiciono o nivel da aresta
+    // Node ij = makeTree(level);
+
+    // // Se o nível da aresta for o nível da lct 
+    // if (level == lc->lctLevel) ij->n_levelEdges = 1;
+
+    // link(ij, lc->nodes[j]);
+    // evert(lc->nodes[i]);
+    // link(lc->nodes[i], ij);
 }
 
 // Não verifico se i-j é uma aresta
 void deleteEdge(LCT lc, int i, int j) {
+    cut(lc->nodes[i]);
+
+
     // A rotina evert aqui é para garantir que o i seja o pai de j na LCT.
-    evert(lc->nodes[i]);
+    // evert(lc->nodes[i]);
     // Após isso, o cut(j) é garantido que corto a aresta i-j e não outra.
             // Antes, não teríamos essa garantia. Porque i poderia ser filho de j na LCT. Assim, não cortaria a aresta i-j, mas sim j-parent(j).
-    cut(lc->nodes[j]);
+    // cut(lc->nodes[j]);
 }
 
 int connected(LCT lc, int i, int j) {
@@ -104,7 +107,8 @@ static void percursoEdge(Node v) {
 static void percursoNode(Node v) {
     if (v == NULL) return;
     
-    if (v->n_levelEdges == 0) return;
+    // versão que era mais atual 
+    // if (v->n_levelEdges == 0) return;
         
     // Vou verificar se o contador do nível é maior ou igual a 1
     // Se é, eu chamo percursoNode, caso contrário não chamo

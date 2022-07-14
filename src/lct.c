@@ -63,10 +63,12 @@ void cut(Node v) {
 	// retiro o 'm', que é a aresta, do seu filho direito.
 	// Porém, ela permanece conectada com o filho esquerdo. 
 
-	Node u = m->children[0];
-	splay(u);
-	// Agora u tem bit zero. Portanto posso cortá-lo
-	split(u);
+
+	// versão mais atual
+	// Node u = m->children[0];
+	// splay(u);
+	// // Agora u tem bit zero. Portanto posso cortá-lo
+	// split(u);
 }
 
 int sizeLct(Node v) {
