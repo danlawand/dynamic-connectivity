@@ -4,7 +4,8 @@
 
 #include <stdio.h>
 static void *mallocSafe(size_t);
-static void percurso(Node);
+static void percursoNode(Node);
+static void percursoEdge(Node);
 
 static Node *nodes;
 static int N;
@@ -16,46 +17,45 @@ static int **adj;
 LCT dynamicForest(int n) {
     LCT linkCutTree = mallocSafe(sizeof(LCT));
 
-    N = n;
-
     nodes = mallocSafe(n * sizeof(Node));
 
-    adj = mallocSafe(n*sizeof(int*));
-
     for (int i = 0; i < n; ++i) {
-        // adj[i] = mallocSafe(n*sizeof(int));
-        nodes[i] = maketree();
+        // passo o -1 aqui como nivel
+        nodes[i] = maketree(-1);
     }
     linkCutTree->nodes = nodes;
     linkCutTree->lctLevel = 0;
-
-    // Adjacency list
-    // for (int i = 0; i < n; ++i) {
-    //     for (int j = 0; j < n; j++) {
-    //         adj[i][j] = -1;
-    //     }
-    // }
     return nodes;
 }
 
-void addEdge(int i, int j) {
-    evert(nodes[i]);
-    link(nodes[i], nodes[j]);
-    // adj[i][j] = 1;
-    // adj[j][i] = 1;
+
+// void addEdge(LCT lc, int i, int j)
+void addEdge(LCT lc, int i, int j) {
+    // evert(nodes[i]);
+    // link(nodes[i], nodes[j]);
+
+
+
+
+    // faço um maketree para criar a aresta ij, 
+    // vou add o nivel da aresta
+    Node ij = makeTree(LEVEL);
+
+    if (LEVEL == lc->lctLevel) ij->n_levelEdges = 1;
+
+    link(ij, lc->nodes[j]);
+    evert(lc->nodes[i]);
+    link(lc->nodes[i], ij);
 }
 
+// Não verifico se i-j é uma aresta
+// void deleteEdge(LCT lc, int i, int j)
 void deleteEdge(int i, int j) {
-    cut(nodes[i]);
-
-    // evert no i
-    // access j já está no cut
-    // Com isso, eu sei quem tá em cima e quem ta embaixo.
-    // E sei qauem
-
-    // Tenho que garantir que quando eu chamo o cut, eu tô chamando o cara que tá embaixo
-
-    // 
+    // A rotina evert aqui é para garantir que o i seja o pai de j na LCT.
+    evert(nodes[i]);
+    // Após isso, o cut(j) é garantido que corto a aresta i-j e não outra.
+            // Antes, não teríamos essa garantia. Porque i poderia ser filho de j na LCT. Assim, não cortaria a aresta i-j, mas sim j-parent(j).
+    cut(nodes[j]);
 }
 
 int connected(int i, int j) {
@@ -68,25 +68,34 @@ int sizeTree(int i) {
     return sizeLct(nodes[i]);
 }
 
+
 void inorderTraversal(int i) {
     printf("inorderTraversal ");
     access(nodes[i]);
-    percurso(nodes[i]);
+    percursoNode(nodes[i]);
     printf("\n\n");
 }
 
+
 // percorre a splay tree enraizada em v em inordem.
-static void percurso(Node v) {
+static void percursoEdge(Node v) {
     if (v == NULL) return;
     
     // Vou verificar se o contador do nível é maior ou igual a 1
-    // Se é, eu chamo percurso, caso contrário não chamo
-    percurso(v->children[0]);
-    printf("%d ", v->val);
+    // Se é, eu chamo percursoEdge, caso contrário não chamo
+    percursoEdge(v->children[0]);
+
+    //****************************
+    // Tá errado isso. 
+    // ***************************
+
+    
+    // int index = hashing(v->val, v->children[0]->val);
+    // printf("%d ", v->edgeNodes[index]->edgeId);
 
     // Vou verificar se o contador do nível é maior ou igual a 1
-    // Se é, eu chamo percurso, caso contrário não chamo
-    percurso(v->children[1]);
+    // Se é, eu chamo percursoEdge, caso contrário não chamo
+    percursoEdge(v->children[1]);
 
     // lista dos filhos não preferenciais
     // enquanto tiver gente na lista
@@ -94,7 +103,33 @@ static void percurso(Node v) {
 
     while(p != &(v->lista) ) {
         splay(p->no);
-        percurso(p->no);
+        percursoEdge(p->no);
+        p = p->next;
+    }
+}
+
+// percorre a splay tree enraizada em v em inordem.
+static void percursoNode(Node v) {
+    if (v == NULL) return;
+    
+    if (v->n_levelEdges == 0) return;
+        
+    // Vou verificar se o contador do nível é maior ou igual a 1
+    // Se é, eu chamo percursoNode, caso contrário não chamo
+    percursoNode(v->children[0]);
+    printf("%d ", v->val);
+
+    // Vou verificar se o contador do nível é maior ou igual a 1
+    // Se é, eu chamo percursoNode, caso contrário não chamo
+    percursoNode(v->children[1]);
+
+    // lista dos filhos não preferenciais
+    // enquanto tiver gente na lista
+    Celula p = (v->lista).next;
+
+    while(p != &(v->lista) ) {
+        splay(p->no);
+        percursoNode(p->no);
         p = p->next;
     }
 }

@@ -9,8 +9,11 @@ static void insertNonPreferredChildren(Node, Node);
 static void removeNonPreferredChildren(Node);
 static void exchangeNonPreferredChildren(Node, Node);
 
-Node maketree() {
-	return makeSplay();
+// Tem como o cara que tem o PathParent ficar na raiz da splay tree?
+
+
+Node maketree(int nivel) {
+	return makeSplay(nivel);
 }
 
 // Acessa o nó v, criando o preferred path da raiz da lct até o nó v
@@ -36,6 +39,16 @@ void link(Node v, Node w) {
 	join(w, v);
 }
 
+int hashing(int i, int j) {
+	if (j > i) {
+		int temp = i;
+		i = j;
+		j = temp;	
+	}
+	int index = ((i+1)*i)/2;
+	return index - (i - j);
+}
+
 // torna v raíz da LCT
 void evert(Node v) {
 	access(v);
@@ -51,8 +64,16 @@ Node findroot(Node v) {
 // retira a aresta 'v'-'v->parent'
 void cut(Node v) {
 	access(v);
+
 	Node m = maxSplay(v->children[0]);
 	split(m);
+	// retiro o 'm', que é a aresta, do seu filho direito.
+	// Porém, ela permanece conectada com o filho esquerdo. 
+
+	Node u = m->children[0];
+	splay(u);
+	// Agora u tem bit zero. Portanto posso cortá-lo
+	split(u);
 }
 
 int sizeLct(Node v) {

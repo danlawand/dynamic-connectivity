@@ -2,7 +2,7 @@
 #define _SPLAY_H
 #include "node.h"
 
-Node makeSplay();
+Node makeSplay(int);
 void splay(Node);
 void join(Node, Node);
 void split(Node);

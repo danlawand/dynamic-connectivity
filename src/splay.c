@@ -20,9 +20,10 @@ static Node maximum(Node);
 
 static Node minimum(Node);
 
-
-Node makeSplay() {
-	return newNode(valor++, NULL, NULL, NULL, NULL, 0, 1, -1);
+// passo o nivel, para identificar a aresta
+// default -1
+Node makeSplay(int nivel) {
+	return newNode(valor++, NULL, NULL, NULL, NULL, 0, 1, nivel, -1);
 }
 
 
@@ -36,15 +37,17 @@ void join(Node v, Node w) {
 	v->children[1] = w;
 	w->parent = v;
 	v->size = v->size + w->size;
+	v->n_levelEdges += w->n_levelEdges;
 }
 
 void split(Node x) {
-	Node T;
+	Node greaterThanX;
 	if (x->bit==1) printf("*************** Erro: Bit de x era pra ser zero no Split **********************\n");
-	T = x->children[1];
-	if (T != NULL) {
-		T->parent = NULL;
-		x->size = x->size - T->size;
+	greaterThanX = x->children[1];
+	if (greaterThanX != NULL) {
+		greaterThanX->parent = NULL;
+		x->size = x->size - greaterThanX->size;
+		x->n_levelEdges -= greaterThanX->n_levelEdges;
 	}
 	x->children[1] = NULL;
 }
@@ -87,6 +90,8 @@ static void rotate(Node x) {
 
 	int sizeChild = 0;
 
+	int nLevelChild = 0;
+
 	// L.83 e 84 lidam com path parent
 	x->pathParent = p->pathParent;
 	p->pathParent = NULL;
@@ -100,6 +105,7 @@ static void rotate(Node x) {
 		if (x->children[1] != NULL) {
 			x->children[1]->parent = p;
 			sizeChild = x->children[1]->size;
+			nLevelChild = x->children[1]->n_levelEdges;
 		}
 		x->children[1] = p;
 	}
@@ -109,6 +115,7 @@ static void rotate(Node x) {
 		if (x->children[0] != NULL) {
 			x->children[0]->parent = p;
 			sizeChild = x->children[0]->size;
+			nLevelChild = x->children[0]->n_levelEdges;
 		}
 		x->children[0] = p;
 	}
@@ -126,7 +133,10 @@ static void rotate(Node x) {
 	}
 
 	p->size = p->size - x->size + sizeChild;
+	p->n_levelEdges = p->n_levelEdges - x->n_levelEdges + nLevelChild;
+
 	x->size = x->size - sizeChild + p->size; 
+	x->n_levelEdges = x->n_levelEdges - nLevelChild + p->n_levelEdges; 
 }
 
 Node minSplay(Node x) {

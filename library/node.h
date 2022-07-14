@@ -27,20 +27,29 @@ struct node {
 	// Apontador para célula em que este nó esta "guardado" na lista dos filhos não preferenciais do pai deste nó
 	Celula cel;
 
+
+	// É PRECISO UM APONTADOR PARA OS NÓS ARESTAS INCIDENTES NESTE NÓ VÉRTICE?
+	// apontador para o nó aresta 
+	Node* edgeNodes;
+
+
 	//****** Atributos usados apenas para nós arestas
+	// indetificador da aresta
+	int edgeId;
+
 	// Indicador de quantos nós-aresta tem na sua subárvore
 	int n_levelEdges;
 
 	// Nível da aresta
 	int edgeLevel;
 
-	// ponteiros usados apenas para os nós que re
+	// ponteiros usados apenas pelas arestas
 	Node edgeNode1;
 	Node edgeNode2;
 	//******
 };
 
-Node newNode(Value, Node, Node, Node, Node, int, int, int);
+Node newNode(Value, Node, Node, Node, Node, int, int, int, int);
 
 // Celula de uma lista duplamente ligada circularmente
 Celula newCelula(Celula, Celula, Node);

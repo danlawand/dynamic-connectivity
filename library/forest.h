@@ -10,7 +10,7 @@ struct lct {
 
 LCT dynamicForest(int);
 
-void addEdge(int, int);
+void addEdge(LCT, int, int);
 
 void deleteEdge(int, int);
 
@@ -20,4 +20,6 @@ int sizeTree(int);
 
 void inorderTraversal(int v);
 // void bfsTraversal(int v);
+
+// Seria bom ter um freeForest, freeLCT, freeSplay, freeNode ...
 #endif

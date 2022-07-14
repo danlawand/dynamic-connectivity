@@ -148,7 +148,12 @@ int main(int argc, char * argv[]) {
 		analisaNode(linkCutTree->nodes[i], arquivo_de_saida);
 	}
 
-	inorderTraversal(1);
+	for (int i = 0; i < n_vertices; i++) {
+		printf("Chamada de %d:\n", i);
+		inorderTraversal(i);
+		printf("\n\n");
+
+	}
 
 	fclose(arquivo_de_saida);
 	fclose (arquivo_entrada);

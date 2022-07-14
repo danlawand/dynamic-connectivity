@@ -4,7 +4,7 @@
 
 static void *mallocSafe(size_t);
 
-Node newNode(Value val, Node left, Node right, Node parent, Node pathParent, int bit, int size, int level) {
+Node newNode(Value val, Node left, Node right, Node parent, Node pathParent ,int bit, int size, int level, int edgeId) {
 	Node p = mallocSafe(sizeof(*p));
 	p->val = val;
 	p->children[1] = right;
@@ -18,10 +18,12 @@ Node newNode(Value val, Node left, Node right, Node parent, Node pathParent, int
 	(p->lista).next = &p->lista;
 	(p->lista).prev = &p->lista;
 
+
 	// cel of this node in the list of Non Preferred Children of its own pathParent
 	p->cel = NULL;
 
 	//*** Atributos usados apenas para nós arestas
+	p->edgeId = edgeId;
 	p->n_levelEdges = 0;
 	p->edgeLevel = level;
 	p->edgeNode1 = NULL;
