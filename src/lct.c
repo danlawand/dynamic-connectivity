@@ -141,7 +141,7 @@ void cut(Node v) {
 
 
 	printf("No cut antes maxSplay\n");
-	Node m = maxSplay(v->children[v->bit]);
+	Node m = maxSplay(v->children[0]);
 	printf("No cut depois maxSplay\n");
 	split(m);
 	// retiro o 'm', que é a aresta, do seu filho direito.
