@@ -49,8 +49,8 @@ void push_nonPreferredChild(Node v, Node w) {
 
     c->no = w;
 	w->cel = c;
-
 }
+
 //	remove v da lista de nonPreferredChildren em que este pertence
 void pop_nonPreferredChild(Node v) {
 	Celula cV = v->cel;

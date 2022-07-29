@@ -102,13 +102,14 @@ int main(int argc, char * argv[]) {
 					}
 				}
 
-				// Print Verboso ou não
-				if (flag_output == 'v') {
-					analisaSplay(linkCutTree->nodes[indice[tag_link-1]]);
-					printf("\n");
-					// printSPLAY(linkCutTree->nodes[indice[tag_link-1]], 1);
-					printf("\n");
-				}
+				// // Print Verboso ou não
+				// if (flag_output == 'v') {
+				// 	printf("ANALISANDO %d\n", indice[tag_link-1]);
+				// 	analisaSplay(linkCutTree->nodes[indice[tag_link-1]]);
+				// 	printf("\n");
+				// 	// printSPLAY(linkCutTree->nodes[indice[tag_link-1]], 1);
+				// 	printf("\n");
+				// }
     		}
     		tag_link++;
     	}
@@ -125,10 +126,21 @@ int main(int argc, char * argv[]) {
 
     			if (flag_output == 'v') printf("------------------------------ Cut dos Vertices %d e %d ------------------------------\n",indice[0], indice[1]);
 
+				if (flag_output == 'v') {
+
+					printf("\n*********** ANTES do Delete ***********\n");
+					for (int i = 0; i < n_vertices; i++) {
+						printf("\n");
+						analisaSplay(linkCutTree->nodes[i]);
+						printf("\n");
+					}
+				}
+
 				deleteEdge(linkCutTree, indice[tag_cut-1], indice[tag_cut]);
 
 				// Print Verboso ou não
 				if (flag_output == 'v') {
+
 					printf("\n*********** Depois do Delete ***********\n");
 					for (int i = 0; i < n_vertices; i++) {
 						printf("\n");

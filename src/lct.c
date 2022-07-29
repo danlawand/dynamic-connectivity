@@ -9,7 +9,43 @@ static void insertNonPreferredChildren(Node, Node);
 static void removeNonPreferredChildren(Node);
 static void exchangeNonPreferredChildren(Node, Node);
 
+static void printDump(Node);
+
 // Tem como o cara que tem o PathParent ficar na raiz da splay tree?
+
+static void printDump(Node v) {
+	printf("v:%d v->bit:%d\n", v->val, v->bit);
+
+	if (v->parent != NULL) {
+		printf("v:%d v->parent: %d : %d\n",v->val, v->parent->val), v->parent->bit;
+		if (v->parent->children[0] == v) {
+			printf("v:%d, v é filho esquerdo\n", v->val);
+		} else {
+			printf("v:%d, v é filho direito\n", v->val);
+		}
+	} else {
+		printf("v:%d, v->parent é NULL\n", v->val);
+	}
+
+	if (v->pathParent != NULL) {
+		printf("v:%d, v->pathParent: %d : %d\n", v->val, v->pathParent->val, v->pathParent->bit);
+	} else {
+		printf("v:%d, v->pathParent é NULL\n", v->val);
+	}
+
+	if (v->children[0] != NULL) {
+		printf("v:%d, v->left:%d : %d\n", v->val, v->children[0]->val, v->children[0]->bit);
+	} else {
+		printf("v:%d, v->left é NULL\n", v->val);
+	}
+
+	if (v->children[1] != NULL) {
+		printf("v:%d, v->right:%d : %d\n", v->val, v->children[1]->val, v->children[1]->bit);
+	} else {
+		printf("v:%d, v->right é NULL\n", v->val);
+	}
+
+}
 
 
 Node maketree(int nivel) {
@@ -19,7 +55,13 @@ Node maketree(int nivel) {
 // Acessa o nó v, criando o preferred path da raiz da lct até o nó v
 void access(Node v) {
 	Node w;
+	printf("\nAntes do Splay\n");
+	printDump(v);
+
 	splay(v);
+
+	printf("\nDepois do Splay\n");
+	printDump(v);
 
 	/* Comentário 14/07/2022
 		deveria se acrescentar um pushBitDown aqui,
@@ -29,14 +71,32 @@ void access(Node v) {
 		Assim, ao fazer a operação removePreferredChild,
 		um filho não preferencial se torna raiz da sua splay
 		e possui bit 1.
+		----------------------------
+		Esse comentário pode não ter valor,
+		pois as alterações feitas na função splay não resolveram o problema.
 	*/
 	removePreferredChild(v);
+	printf("\nV- Depois do removePreferredChild\n");
+	printDump(v);
 
 	while (v->pathParent != NULL) {
 		w = v->pathParent;
+
+		printf("\nW - Antes do Splay\n");
+		printDump(w);
+
 		splay(w);
+		
+		printf("\nW- Depois do Splay\n");
+		printDump(w);
+
 		switchPreferredChild(w, v);
+		printf("\nV- Depois do switchPreferredChild\n");
+		printDump(v);
+
 		splay(v);
+		printf("\nV- Depois do splay\n");
+		printDump(v);
 	}
 }
 
@@ -66,13 +126,23 @@ Node findroot(Node v) {
 
 // retira a aresta 'v'-ij-'v->parent'
 void cut(Node v) {
+	printf("No Cut\n");
+	printf("\nAntes do Access\n");
+	printDump(v);
+
 	access(v);
+
+	printf("\nDepois do Access\n");
+	printDump(v);
 
 	int valor = -1;
 	if (v->children[0] != NULL) valor = v->children[0]->val;
-	printf("v:%d, v->right:%d\n", v->val, valor);
 
-	Node m = maxSplay(v->children[0]);
+
+
+	printf("No cut antes maxSplay\n");
+	Node m = maxSplay(v->children[v->bit]);
+	printf("No cut depois maxSplay\n");
 	split(m);
 	// retiro o 'm', que é a aresta, do seu filho direito.
 	// Porém, ela permanece conectada com o filho esquerdo. 
@@ -92,23 +162,38 @@ int sizeLct(Node v) {
 
 //-----------------------------------------------------
 // Em algum lugar do código devemos estar considerando que a raiz da splay só pode ter bit zero, mas não está explícito.
-//-----------------------------------------------------
 
-//-----------------------------------------------------
-// Temos que conferir se o pushBitUp está fazendo o papel certo.
-// Pode ser que o pushBitUp esteja errado.
+// 15/07 -> Pode ser que o bit da raiz fique com 1, pois alteramos o pushBitUp. Esta função permite que o bit da raiz seja 1.
+
 //-----------------------------------------------------
 
 
 // v é raiz de sua splay tree
 // remove o preferred child de v
 static void removePreferredChild(Node v) {
+	printf("\nNo removePreferredChild\n");
 	if (v->children[1] != NULL) {
-		v->children[1]->pathParent = v;
-		v->children[1]->parent = NULL;
+		printf("dentro do IF\n");
+		printf("v:%d v->bit:%d\n",v->val, v->bit);
+		if (v->children[1] != NULL) {
+			printf("v:%d v->children[1] : %d\n", v->val, v->children[1]->val);
+			if (v->children[1]->pathParent != NULL) {
+				printf("v:%d v->children[1]->pathParent : %d\n",v->val, v->children[1]->pathParent->val);
+			} else {
+				printf("v:%d v->children[1]->pathParent é NULL\n", v->val);
+			}
+			v->children[1]->pathParent = v;
+			v->children[1]->parent = NULL;
+		} else {
+			printf("v:%d v->children[1] é NULL\n", v->val);
+		}
+
+
 
 		//insere o v->children[1] na lista do v 
 		insertNonPreferredChildren(v, v->children[1]);
+
+
 
 		v->children[1] = NULL;
 	}
@@ -123,15 +208,20 @@ static void switchPreferredChild(Node w, Node v) {
 		w->children[1]->pathParent = w;
 		w->children[1]->parent = NULL;
 
-		// Na lista do w, tiro o v e insiro o w->children[1]
-		// v e w->children[1] são raizes
-		exchangeNonPreferredChildren(v, w->children[1]);
+
+		// // Na lista do w, tiro o v e insiro o w->children[1]
+		// // v e w->children[1] são raizes
+		// exchangeNonPreferredChildren(v, w->children[1]);
+
+		removeNonPreferredChildren(v);
+		insertNonPreferredChildren(w, w->children[1]);
 
 	} else {
 		// removo o v da lista do w. 
 		//Como v faz parte apenas de uma única lista, pois é filho não preferencial de apenas um pai, logo não preciso indicar sobre qual lista estou removendo. 
-		removeNonPreferredChildren(v);
 
+		removeNonPreferredChildren(v);
+		
 		// Inseri as seguintes linhas na rotina rotate:
 		/*
 			// Lidam com a célula de nonPreferredChild
@@ -152,13 +242,17 @@ static void switchPreferredChild(Node w, Node v) {
 //	insere w na lista de nonPreferredChildren de v
 static void insertNonPreferredChildren(Node v, Node w) {
 	// printf("Insere %d na lista de %d\n", w->val, v->val);
-	push_nonPreferredChild(v, w);
+	if (v->n_levelEdges > 0) {
+		push_nonPreferredChild(v, w);
+	}
 }
 
 //	remove v da lista de nonPreferredChildren em que este pertence
 static void removeNonPreferredChildren(Node v) {
 	// printf("Remove %d da lista em que está\n", v->val);
-	pop_nonPreferredChild(v);
+	if (v->cel != NULL) {
+		pop_nonPreferredChild(v);
+	}
 }
 
 // Na lista de nonPreferredChildren de w, tiro o v e insiro o u

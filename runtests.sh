@@ -3,7 +3,7 @@
 make
 
 function runningTests() {
-    for i in {0..16}
+    for i in {0..15}
     do
         echo "Running test${i}.txt"
         ./exe ./test/tests/test${i}.txt ${i} v

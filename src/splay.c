@@ -80,20 +80,55 @@ void split(Node x) {
 
 	-----------------
 	Alterei o pushBitUp para pushBitDown, e aparentemente funcionou
+	[Funcionou até o teste 11]
 
+	No teste 12, falha, porque encontra o bit 1 no meio do caminho
+*/
+
+/* Comentário 29/07/2022
+	pushBitUp alterado na última reunião
+
+	contudo temos um problema:
+	
+	x = 1
+	Se eu faço splay(x) ==> splay(1)
+
+	Para uma splay tree assim:
+	(a raiz é o topo)
+	     0:0
+			  1:1
+	Iria fazer o p = x->parent pushBitUp(p)
+	     0:1
+	1:0
+
+	Depois faço ==> if(p->parent == NULL) rotate(x);
+	     1:0
+			  0:1
+
+	Assim, não ficou errado?
+	Porque o bit não diz respeito apenas aos filhos? Indicando que a árvore está invertida?
+
+	Desse modo, ao final pareceria que a raíz da LCT é o vértice 1 e o vértice zero é seu filho.
+	Contudo, quando recebemos a splay tree, é indicado o contrário. Zero é a raiz, e o 1 é seu filho.
 
 */
 
 void splay (Node x) {
-	pushBitDown(x);//pushBitUp(x);//???
+	pushBitUp(x);
 	while (x->parent != NULL) {
 		Node p = x->parent;
-		pushBitDown(x);//pushBitUp(p);//???
+		pushBitUp(p);
 		if (p->parent == NULL) rotate(x);
 		else { 
 			Node g = p->parent;
-			pushBitDown(x);//pushBitUp(g);
-			if (x->bit == 1 || p->bit == 1 || g->bit == 1) printf("*************** Erro: Algum bit é 1 no splay ***************\n");
+			pushBitUp(g);
+			if (x->bit == 1) {
+				printf("*************** Erro: X Bit %d é 1 no splay ***************\n", x->val);
+			} else if (p->bit == 1){
+				printf("*************** Erro: P Bit %d é 1 no splay ***************\n", p->val);
+			} else if (g->bit == 1) {
+				printf("*************** Erro: G Bit %d é 1 no splay ***************\n", g->val);
+			} 
 
 			// Zig-Zig ou Zag-Zag
 			if (( p == g->children[0] && x == p->children[0] ) ||
@@ -113,7 +148,7 @@ void splay (Node x) {
 	if (x->bit == 1) printf("*************** Erro no bit na função splay ***************\n");
 }
 
-// Assume-se que o x e o x->parent tem bit = 0
+// Assume-se que o x tem bit zero, e que o x->parent tem bit = 0 ou é a raiz
 static void rotate(Node x) {
 
 	Node p = x->parent;
@@ -183,18 +218,20 @@ static Node minimum(Node x) {
 }
 
 Node maxSplay(Node x) {
+	printf("No maxSplay antes do maximum\n");
 	Node m = maximum(x);
 	splay(m);
 	return m;
 }
 
 static Node maximum(Node x) {
+	printf("No maximum antes do pushBitDown\n");
 	pushBitDown(x);
 	if (x->children[1] == NULL) return x;
 	return maximum(x->children[1]);
 }
 
-// Não se assume nada sobre o bit do x
+// Se o x for a raiz, não mexe no bit.
 static void pushBitUp(Node x) {
 	if (x->bit == 1) {
 		Node p = x->parent;
@@ -203,15 +240,20 @@ static void pushBitUp(Node x) {
 			Node s = sibling(x);
 			if (s != NULL) s->bit = 1 - s->bit;
 			swapChildren(p);
-		} else {
-			swapChildren(x);
+			x->bit = 0;
 		}
-		x->bit = 0;
 	}
 }
 
 // Não se assume nada sobre o bit do x
 static void pushBitDown(Node x) {
+	printf("No pushBitDown antes do print \n");
+	if (x == NULL) {
+		printf("x é NULL \n");
+	}
+	if (x->val == NULL) {
+		printf("x->val é NULL \n");
+	}
 	printf("		x->val: %d\n", x->val);
 	if (x->bit == 1) {
 		swapChildren(x);

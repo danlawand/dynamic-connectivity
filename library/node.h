@@ -6,6 +6,7 @@
 typedef struct celula *Celula;
 typedef struct node *Node;
 
+// Lista de nonPreferredChildren that have at least one node of level of the lct
 struct celula {
     Celula next;
     Celula prev;
