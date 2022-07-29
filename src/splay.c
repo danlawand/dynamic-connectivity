@@ -163,9 +163,9 @@ void splay (Node x) {
 	}
 }
 
-// [ERRADO] Assume-se que o x tem bit zero, e que o x->parent tem bit = 0 ou é a raiz
+// Assume-se que o x tem bit zero, e que o x->parent tem bit = 0 ou é a raiz
 
-// Há casos em que o x pode ter bit 1
+
 static void rotate(Node x) {
 
 	Node p = x->parent;
@@ -202,6 +202,9 @@ static void rotate(Node x) {
 		}
 		x->children[0] = p;
 	}
+
+	x->bit = p->bit;
+	p->bit = 0;
 
 	p->parent = x;
 	x->parent = g;
