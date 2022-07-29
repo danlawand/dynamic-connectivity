@@ -6,7 +6,7 @@ function runningTests() {
     for i in {0..15}
     do
         echo "Running test${i}.txt"
-        ./exe ./test/tests/test${i}.txt ${i} v
+        ./exe ./test/tests/test${i}.txt ${i}
     done
 }
 

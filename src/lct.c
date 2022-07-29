@@ -55,13 +55,13 @@ Node maketree(int nivel) {
 // Acessa o nó v, criando o preferred path da raiz da lct até o nó v
 void access(Node v) {
 	Node w;
-	printf("\nAntes do Splay\n");
-	printDump(v);
+	// printf("\nAntes do Splay\n");
+	// printDump(v);
 
 	splay(v);
 
-	printf("\nDepois do Splay\n");
-	printDump(v);
+	// printf("\nDepois do Splay\n");
+	// printDump(v);
 
 	/* Comentário 14/07/2022
 		deveria se acrescentar um pushBitDown aqui,
@@ -76,27 +76,27 @@ void access(Node v) {
 		pois as alterações feitas na função splay não resolveram o problema.
 	*/
 	removePreferredChild(v);
-	printf("\nV- Depois do removePreferredChild\n");
-	printDump(v);
+	// printf("\nV- Depois do removePreferredChild\n");
+	// printDump(v);
 
 	while (v->pathParent != NULL) {
 		w = v->pathParent;
 
-		printf("\nW - Antes do Splay\n");
-		printDump(w);
+		// printf("\nW - Antes do Splay\n");
+		// printDump(w);
 
 		splay(w);
 		
-		printf("\nW- Depois do Splay\n");
-		printDump(w);
+		// printf("\nW- Depois do Splay\n");
+		// printDump(w);
 
 		switchPreferredChild(w, v);
-		printf("\nV- Depois do switchPreferredChild\n");
-		printDump(v);
+		// printf("\nV- Depois do switchPreferredChild\n");
+		// printDump(v);
 
 		splay(v);
-		printf("\nV- Depois do splay\n");
-		printDump(v);
+		// printf("\nV- Depois do splay\n");
+		// printDump(v);
 	}
 }
 
@@ -126,23 +126,23 @@ Node findroot(Node v) {
 
 // retira a aresta 'v'-ij-'v->parent'
 void cut(Node v) {
-	printf("No Cut\n");
-	printf("\nAntes do Access\n");
-	printDump(v);
+	// printf("No Cut\n");
+	// printf("\nAntes do Access\n");
+	// printDump(v);
 
 	access(v);
 
-	printf("\nDepois do Access\n");
-	printDump(v);
+	// printf("\nDepois do Access\n");
+	// printDump(v);
 
 	int valor = -1;
 	if (v->children[0] != NULL) valor = v->children[0]->val;
 
 
 
-	printf("No cut antes maxSplay\n");
+	// printf("No cut antes maxSplay\n");
 	Node m = maxSplay(v->children[0]);
-	printf("No cut depois maxSplay\n");
+	// printf("No cut depois maxSplay\n");
 	split(m);
 	// retiro o 'm', que é a aresta, do seu filho direito.
 	// Porém, ela permanece conectada com o filho esquerdo. 
@@ -171,22 +171,23 @@ int sizeLct(Node v) {
 // v é raiz de sua splay tree
 // remove o preferred child de v
 static void removePreferredChild(Node v) {
-	printf("\nNo removePreferredChild\n");
+	// printf("\nNo removePreferredChild\n");
 	if (v->children[1] != NULL) {
-		printf("dentro do IF\n");
-		printf("v:%d v->bit:%d\n",v->val, v->bit);
-		if (v->children[1] != NULL) {
-			printf("v:%d v->children[1] : %d\n", v->val, v->children[1]->val);
-			if (v->children[1]->pathParent != NULL) {
-				printf("v:%d v->children[1]->pathParent : %d\n",v->val, v->children[1]->pathParent->val);
-			} else {
-				printf("v:%d v->children[1]->pathParent é NULL\n", v->val);
-			}
-			v->children[1]->pathParent = v;
-			v->children[1]->parent = NULL;
-		} else {
-			printf("v:%d v->children[1] é NULL\n", v->val);
-		}
+		// printf("dentro do IF\n");
+		// printf("v:%d v->bit:%d\n",v->val, v->bit);
+		// if (v->children[1] != NULL) {
+			// printf("v:%d v->children[1] : %d\n", v->val, v->children[1]->val);
+			// if (v->children[1]->pathParent != NULL) {
+			// 	printf("v:%d v->children[1]->pathParent : %d\n",v->val, v->children[1]->pathParent->val);
+			// } else {
+			// 	printf("v:%d v->children[1]->pathParent é NULL\n", v->val);
+			// }
+		v->children[1]->pathParent = v;
+		v->children[1]->parent = NULL;
+		// } 
+		//else {
+		// 	printf("v:%d v->children[1] é NULL\n", v->val);
+		// }
 
 
 

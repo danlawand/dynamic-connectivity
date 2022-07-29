@@ -53,19 +53,19 @@ void deleteEdge(LCT lc, int i, int j) {
 
 
     // A rotina evert aqui é para garantir que o i seja o pai de j na LCT.
-    printf("\nEVERT no %d\n", lc->nodes[i]->val);
+    // printf("\nEVERT no %d\n", lc->nodes[i]->val);
     evert(lc->nodes[i]);
-    for (int i = 0; i < n_vertices; i++) {
-        printf("\n");
-        analisaSplay(lc->nodes[i]);
-        printf("\n");
-    }
+    // for (int i = 0; i < n_vertices; i++) {
+    //     printf("\n");
+    //     analisaSplay(lc->nodes[i]);
+    //     printf("\n");
+    // }
     // Após isso, o cut(j) é garantido que corto a aresta i-j e não outra.
             // Antes, não teríamos essa garantia. Porque i poderia ser filho de j na LCT. Assim, não cortaria a aresta i-j, mas sim j-parent(j).
-    printf("\nCUT no %d\n", lc->nodes[j]->val);
-    if (lc->nodes[j]->parent != NULL) {
-        printf("%d->parent: %d\n", lc->nodes[j]->val, lc->nodes[j]->parent->val);
-    }
+    // printf("\nCUT no %d\n", lc->nodes[j]->val);
+    // if (lc->nodes[j]->parent != NULL) {
+    //     printf("%d->parent: %d\n", lc->nodes[j]->val, lc->nodes[j]->parent->val);
+    // }
     cut(lc->nodes[j]);
 }
 
