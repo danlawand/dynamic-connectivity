@@ -1,0 +1,77 @@
+Sobre o 0
+0->pathParent: Eh null
+Preferred Path: 
+0 -> 
+Lista de nonPreferredChildren:
+
+
+Sobre o 1
+1->pathParent: 4
+Preferred Path: 
+1 -> 
+Lista de nonPreferredChildren:
+
+
+Sobre o 2
+2->pathParent: Eh null
+Preferred Path: 
+2 -> 
+Lista de nonPreferredChildren:
+
+
+Sobre o 3
+3->pathParent: Eh null
+Preferred Path: 
+4 -> 3 -> 
+Lista de nonPreferredChildren:
+
+
+Sobre o 4
+4->pathParent: Eh null
+Preferred Path: 
+4 -> 3 -> 
+Lista de nonPreferredChildren:
+
+
+Sobre o 5
+5->pathParent: 1
+Preferred Path: 
+5 -> 
+Lista de nonPreferredChildren:
+
+
+Sobre o 6
+6->pathParent: 1
+Preferred Path: 
+6 -> 
+Lista de nonPreferredChildren:
+
+
+Sobre o 7
+7->pathParent: 6
+Preferred Path: 
+7 -> 8 -> 9 -> 
+Lista de nonPreferredChildren:
+
+
+Sobre o 8
+8->pathParent: Eh null
+Preferred Path: 
+7 -> 8 -> 9 -> 
+Lista de nonPreferredChildren:
+
+
+Sobre o 9
+9->pathParent: Eh null
+Preferred Path: 
+7 -> 8 -> 9 -> 
+Lista de nonPreferredChildren:
+
+
+Sobre o 10
+10->pathParent: 7
+Preferred Path: 
+10 -> 
+Lista de nonPreferredChildren:
+
+

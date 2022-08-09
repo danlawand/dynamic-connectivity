@@ -7,7 +7,7 @@ static void switchPreferredChild(Node, Node);
 
 static void insertNonPreferredChildren(Node, Node);
 static void removeNonPreferredChildren(Node);
-static void exchangeNonPreferredChildren(Node, Node);
+// static void exchangeNonPreferredChildren(Node, Node);
 
 static void printDump(Node);
 
@@ -48,7 +48,7 @@ static void printDump(Node v) {
 }
 
 
-Node maketree(int nivel) {
+Node makeTree(int nivel) {
 	return makeSplay(nivel);
 }
 
@@ -82,21 +82,9 @@ void access(Node v) {
 	while (v->pathParent != NULL) {
 		w = v->pathParent;
 
-		// printf("\nW - Antes do Splay\n");
-		// printDump(w);
-
 		splay(w);
-		
-		// printf("\nW- Depois do Splay\n");
-		// printDump(w);
-
 		switchPreferredChild(w, v);
-		// printf("\nV- Depois do switchPreferredChild\n");
-		// printDump(v);
-
 		splay(v);
-		// printf("\nV- Depois do splay\n");
-		// printDump(v);
 	}
 }
 
@@ -138,11 +126,7 @@ void cut(Node v) {
 	int valor = -1;
 	if (v->children[0] != NULL) valor = v->children[0]->val;
 
-
-
-	// printf("No cut antes maxSplay\n");
 	Node m = maxSplay(v->children[0]);
-	// printf("No cut depois maxSplay\n");
 	split(m);
 	// retiro o 'm', que é a aresta, do seu filho direito.
 	// Porém, ela permanece conectada com o filho esquerdo. 
@@ -168,34 +152,18 @@ int sizeLct(Node v) {
 //-----------------------------------------------------
 
 
+// Assumimos que a raiz da splay tree tenha bit zero
 // v é raiz de sua splay tree
 // remove o preferred child de v
 static void removePreferredChild(Node v) {
-	// printf("\nNo removePreferredChild\n");
+
 	if (v->children[1] != NULL) {
-		// printf("dentro do IF\n");
-		// printf("v:%d v->bit:%d\n",v->val, v->bit);
-		// if (v->children[1] != NULL) {
-			// printf("v:%d v->children[1] : %d\n", v->val, v->children[1]->val);
-			// if (v->children[1]->pathParent != NULL) {
-			// 	printf("v:%d v->children[1]->pathParent : %d\n",v->val, v->children[1]->pathParent->val);
-			// } else {
-			// 	printf("v:%d v->children[1]->pathParent é NULL\n", v->val);
-			// }
+
 		v->children[1]->pathParent = v;
 		v->children[1]->parent = NULL;
-		// } 
-		//else {
-		// 	printf("v:%d v->children[1] é NULL\n", v->val);
-		// }
-
-
-
+		
 		//insere o v->children[1] na lista do v 
 		insertNonPreferredChildren(v, v->children[1]);
-
-
-
 		v->children[1] = NULL;
 	}
 }
@@ -212,7 +180,6 @@ static void switchPreferredChild(Node w, Node v) {
 
 		// // Na lista do w, tiro o v e insiro o w->children[1]
 		// // v e w->children[1] são raizes
-		// exchangeNonPreferredChildren(v, w->children[1]);
 
 		removeNonPreferredChildren(v);
 		insertNonPreferredChildren(w, w->children[1]);
@@ -257,10 +224,10 @@ static void removeNonPreferredChildren(Node v) {
 }
 
 // Na lista de nonPreferredChildren de w, tiro o v e insiro o u
-static void exchangeNonPreferredChildren(Node v, Node u) {
-	// printf("Insere %d, e retira %d\n", v->val, u->val);
-	exchange_nonPreferredChild(v, u);
-}
+// static void exchangeNonPreferredChildren(Node v, Node u) {
+// 	// printf("Insere %d, e retira %d\n", v->val, u->val);
+// 	exchange_nonPreferredChild(v, u);
+// }
 
 // Operação dumb que só mostra qual é a raiz da árvore, sem mexer nela.
 Node findRootSemAccess(Node v) {

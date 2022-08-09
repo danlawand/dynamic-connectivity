@@ -118,16 +118,7 @@ void splay (Node x) {
 	while (x->parent != NULL) {
 		Node p = x->parent;
 		pushBitUp(p);
-		if (p->parent == NULL) {
-			if (x->bit == 1) {
-				printf("*************** Erro: X Bit %d é 1 no splay ***************\n", x->val);
-			} else if (p->bit == 1){
-				printf("*************** Erro: P Bit %d é 1 no splay ***************\n", p->val);
-			}
-			printf("Antes do rotate\n");
-			rotate(x);
-			printf("Depois do rotate\n");
-		}
+		if (p->parent == NULL) rotate(x);
 		else { 
 			Node g = p->parent;
 			pushBitUp(g);
@@ -155,6 +146,7 @@ void splay (Node x) {
 			}
 		}
 	}
+	// Precisamos que na LCT a raiz tenha bit zero
 	pushBitDown(x);
 	root = x;
 	if (x->bit == 1) {
@@ -163,9 +155,7 @@ void splay (Node x) {
 	}
 }
 
-// Assume-se que o x tem bit zero, e que o x->parent tem bit = 0 ou é a raiz
-
-
+// Raiz da splay tree pode estar com bit 1
 static void rotate(Node x) {
 
 	Node p = x->parent;
@@ -203,7 +193,7 @@ static void rotate(Node x) {
 		x->children[0] = p;
 	}
 
-	x->bit = p->bit;
+	x->bit = p->bit; // p->bit só é um se p é raiz
 	p->bit = 0;
 
 	p->parent = x;

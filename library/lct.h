@@ -2,7 +2,7 @@
 #define _LCT_H
 #include "splay.h"
 
-Node maketree(int);
+Node makeTree(int);
 
 void link(Node, Node);
 
