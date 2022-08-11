@@ -17,7 +17,7 @@ static void printDump(Node v) {
 	printf("v:%d v->bit:%d\n", v->val, v->bit);
 
 	if (v->parent != NULL) {
-		printf("v:%d v->parent: %d : %d\n",v->val, v->parent->val), v->parent->bit;
+		printf("v:%d v->parent: %d : %d\n",v->val, v->parent->val, v->parent->bit);
 		if (v->parent->children[0] == v) {
 			printf("v:%d, v é filho esquerdo\n", v->val);
 		} else {
@@ -48,8 +48,8 @@ static void printDump(Node v) {
 }
 
 
-Node makeTree(int nivel) {
-	return makeSplay(nivel);
+Node makeTree(int level) {
+	return makeSplay(level);
 }
 
 // Acessa o nó v, criando o preferred path da raiz da lct até o nó v
@@ -123,20 +123,21 @@ void cut(Node v) {
 	// printf("\nDepois do Access\n");
 	// printDump(v);
 
-	int valor = -1;
-	if (v->children[0] != NULL) valor = v->children[0]->val;
+	// int valor = -1;
+	// if (v->children[0] != NULL) valor = v->children[0]->val;
 
 	Node m = maxSplay(v->children[0]);
-	split(m);
+	// split(m); old version
+
 	// retiro o 'm', que é a aresta, do seu filho direito.
 	// Porém, ela permanece conectada com o filho esquerdo. 
 
 
 	// versão mais atual
-	// Node u = m->children[0];
-	// splay(u);
-	// // Agora u tem bit zero. Portanto posso cortá-lo
-	// split(u);
+	Node u = m->children[0];
+	splay(u);
+	// Agora u tem bit zero. Portanto posso cortá-lo
+	split(u);
 }
 
 int sizeLct(Node v) {

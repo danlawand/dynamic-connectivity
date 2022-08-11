@@ -22,8 +22,8 @@ static Node minimum(Node);
 
 // passo o nivel, para identificar a aresta
 // default -1
-Node makeSplay(int nivel) {
-	return newNode(valor++, NULL, NULL, NULL, NULL, 0, 1, nivel, -1);
+Node makeSplay(int level) {
+	return newNode(valor++, NULL, NULL, NULL, NULL, 0, 1, level, -1);
 }
 
 
@@ -124,13 +124,13 @@ void splay (Node x) {
 			pushBitUp(g);
 			if (x->bit == 1) {
 				printf("*************** Erro: X Bit %d é 1 no splay ***************\n", x->val);
-				exit(0);
+				// exit(0);
 			} else if (p->bit == 1){
 				printf("*************** Erro: P Bit %d é 1 no splay ***************\n", p->val);
-				exit(0);
+				// exit(0);
 			} else if (g != NULL && g->bit == 1) {
 				printf("*************** Erro: G Bit %d é 1 no splay ***************\n", g->val);
-				exit(0);
+				// exit(0);
 			} 
 
 			// Zig-Zig ou Zag-Zag
@@ -150,7 +150,7 @@ void splay (Node x) {
 	pushBitDown(x);
 	root = x;
 	if (x->bit == 1) {
-		printf("*************** Erro no bit na função splay ***************\n");
+		printf("*************** Erro: Raiz com bit 1 na função splay ***************\n");
 		exit(0);
 	}
 }

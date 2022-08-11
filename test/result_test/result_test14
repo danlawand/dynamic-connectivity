@@ -10,7 +10,7 @@ Sobre o 1
 Preferred Path: 
 1 -> 6 -> 
 Lista de nonPreferredChildren:
-
+11, 
 
 Sobre o 2
 2->pathParent: Eh null
@@ -34,7 +34,7 @@ Lista de nonPreferredChildren:
 
 
 Sobre o 5
-5->pathParent: 1
+5->pathParent: Eh null
 Preferred Path: 
 5 -> 
 Lista de nonPreferredChildren:
@@ -45,14 +45,14 @@ Sobre o 6
 Preferred Path: 
 1 -> 6 -> 
 Lista de nonPreferredChildren:
-
+15, 
 
 Sobre o 7
-7->pathParent: 6
+7->pathParent: Eh null
 Preferred Path: 
 7 -> 8 -> 9 -> 
 Lista de nonPreferredChildren:
-
+12, 
 
 Sobre o 8
 8->pathParent: Eh null
@@ -69,7 +69,7 @@ Lista de nonPreferredChildren:
 
 
 Sobre o 10
-10->pathParent: 7
+10->pathParent: Eh null
 Preferred Path: 
 10 -> 
 Lista de nonPreferredChildren:
