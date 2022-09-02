@@ -1,0 +1,92 @@
+@InBook{DemetrescuFI2004,
+  author = 	 {C. Demetrescu and I. Finocchi and G. F. Italiano},
+  title = 	 {Handbook of Data Structures and Applications},
+  chapter = 	 {Dynamic Graphs},
+  publisher = 	 {Chapman and Hall/CRC},
+  year = 	 2004}
+
+@Article{Tarjan1975,
+  author = 	 {Tarjan, R. E.},
+  title = 	 {Efficiency of a Good But Not Linear Set Union Algorithm},
+  journal = 	 {Journal of the ACM},
+  year = 	 1975,
+  volume = 	 22,
+  number = 	 2,
+  pages = 	 {215--225}}
+
+@Article{EvenS1981,
+  author = 	 {S. Even and Y. Shiloach},
+  title = 	 {An On-Line Edge-Deletion Problem},
+  journal = 	 {Journal of the ACM},
+  year = 	 1981,
+  volume = 	 28,
+  number = 	 1,
+  pages = 	 {1-4}}
+
+@InProceedings{SleatorT1983,
+  author = 	 {Sleator, D. D. and Tarjan, R. E.},
+  title = 	 {A Data Structure for Dynamic Trees},
+  booktitle = {Proceedings of the Thirteenth Annual ACM Symposium on Theory of Computing (STOC)},
+  year = 	 1983,
+  pages = 	 114}
+
+@InProceedings{HenzingerK1995,
+  author = 	 {Henzinger, M. R. and King, V.},
+  title = 	 {Randomized dynamic graph algorithms with polylogarithmic time per operation},
+  booktitle = {Proceedings of the Twenty-Seventh Annual ACM Symposium on Theory of Computing (STOC)},
+  year = 	 1995,
+  pages = 	 519}
+
+@Misc{DemaineL2007,
+  author = 	 {E. Demaine and K. Lai (scriber)},
+  title = 	 {Dynamic Graph Problems},
+  howpublished = {Lecture Notes in Advanced Data Structures},
+  year = 	 2007}
+
+@Article{SleatorT1985,
+  author = 	 {D. D. Sleator and R. E. Tarjan},
+  title = 	 {Self-Adjusting Binary Search Trees},
+  journal = 	 {Journal of the ACM},
+  year = 	 1985,
+  volume = 	 32,
+  number = 	 3,
+  pages = 	 {652--686}}
+
+@Book{SedgewickW2011,
+  author = 	 {R. Sedgewick and K. Wayne},
+  title = 	 {Algorithms},
+  publisher = 	 {Addison-Wesley},
+  year = 	 2011,
+  edition = 	 4}
+
+@Misc{DemaineHJSI2012,
+  author = 	 {E. Demaine and J. Holmgren (scriber) and J. Jian (scriber) and M. Stepanenko (scriber) and M. Ishaque (scriber)},
+  title = 	 {Link-Cut Trees Problems},
+  howpublished = {Lecture Notes in Advanced Data Structures},
+  year = 	 2012}
+
+@Misc{wiki:LinkCutTree,
+  title = 	 {Link-Cut Tree},
+  howpublished = {Wikip\'edia: a enciclop\'edia livre},
+  month = 	 {March},
+  year = 	 2022,
+  note = {{\small{\texttt{https://en.wikipedia.org/} \texttt{wiki/Link/cut\_tree}}}}}
+
+@Misc{RamchandraCODEFORCE,
+  author = 	 {R. Apte},
+  title = 	 {Link-cut tree tutorial},
+  howpublished = {CodeForces},
+  month = 	 {March},
+  year = 	 2022,
+  note = {{\small{\texttt{https://codeforces.com/} \texttt{blog/entry/80383}}}}}
+
+
+@Article{HolmLT2001,
+  author = 	 {Holm, J.; De Lichtenberg, K.; Thorup, M.},
+  title = 	 {Poly-logarithmic deterministic fully-dynamic algorithms for connectivity, minimum spanning tree, 2-edge, and biconnectivity},
+  journal = 	 {Journal of the ACM},
+  year = 	 2001,
+  volume = 	 48,
+  number = 	 4,
+  pages = 	 {723}
+  doi = {10.1145/502090.502095}}

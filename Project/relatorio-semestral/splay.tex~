@@ -1,0 +1,27 @@
+\emph{Splay tree} é uma árvore binária de busca (ABB), em que o último elemento acessado 
+se torna a raiz da árvore~\cite{SleatorT1985}. Isso é feito de uma maneira particular 
+que garante que as operações na árvore tenham custo amortizado logarítmico no número de 
+nós da árvore~\cite{SedgewickW2011}. Existem diferentes tipos de implementação das \emph{splay trees}.  
+
+Para o propósito desse trabalho, a chave dos elementos armazenados na \emph{splay tree} não será armazenada explicitamente. Ou seja, os nós (\texttt{Node}), na nossa implementação, não possuem campo chave (\texttt{Key}), tratando-se de uma ABB com chaves implícitas, e não utilizamos as chaves para realizar qualquer tipo de operação. Em uma ABB tradicional, as chaves da subárvore esquerda são menores do que a do nó e as chaves da subárvore direita são maiores do que a do nó, e para encontrar determinada chave, a passamos como argumento. Em uma \emph{splay tree} com chaves implícitas, considera-se que a chave de um nó é a posição dele num percurso in-ordem da árvore. Assim, por exemplo ao criar uma \emph{splay tree} com um único elemento, não há necessidade de passar uma chave pois essa será automaticamente $1$. Assim utilizamos a seguinte interface para as \emph{splay trees}.  
+
+
+\begin{itemize}
+    \item \texttt{makeSplay()}: retorna a raiz de uma \emph{splay tree} com apenas um nó, com consumo de tempo de $\Oh(1)$.  
+
+    \item \texttt{splay(Node v)}: recebe um nó \texttt{v} de uma \emph{splay tree}, tornando-o raiz desta \emph{splay tree}, com consumo amortizado de tempo de $\Oh(\lg n)$.  
+
+    \item \texttt{join(Node v, Node w)}: junta as \emph{splay trees} com raiz em \texttt{v} e \texttt{w}. Assume-se que \texttt{v} é o nó com chave máxima em sua \emph{splay tree} e as chaves da \emph{splay tree} de \texttt{w} se tornarão maiores que a chave de \texttt{v}. Tal rotina consome tempo $\Oh(1)$.  
+
+    \item \texttt{split(Node v)}: recebe um nó \texttt{v} de uma \emph{splay tree} e quebra essa \emph{splay tree} em duas: uma com todos os nós com chave menor ou igual a \texttt{v} e outra com os nós com chave maior que \texttt{v}. Tal rotina consome tempo $\Oh(1)$.  
+
+    \item \texttt{maxSplay(Node v)}: retorna o nó com chave máxima da \emph{splay tree} a que \texttt{v} pertence, com consumo amortizado de tempo de $\Oh(\lg n)$.  
+
+    \item \texttt{minSplay(Node v)}: retorna o nó com chave mínima da \emph{splay tree} a que \texttt{v} pertence, com consumo amortizado de tempo de $\Oh(\lg n)$.  
+
+    \item \texttt{reflect(Node v)}: inverte o percurso em in-ordem da \emph{splay tree} enraizada em \texttt{v}. O efeito dessa operação numa ABB com chaves implícitas é a alteração de todas as chaves dos nós desta árvore de 0, 1, $\cdots$, t-1, t para t, t-1, $\cdots$, 1, 0. Essa rotina consome tempo $\Oh(1)$.  
+
+
+\end{itemize}
+
+Nessa implementação, não há inserção ou remoção de nós, pois as \emph{splay trees} crescem com a rotina \texttt{join} e diminuem através da rotina \texttt{split}, que quebra a árvore em duas. Também não faremos buscas nessas árvores. Note também que as operações \texttt{join}, \texttt{split} e \texttt{reflect} alteram implicitamente a chave de vários nós das árvores manipuladas. O uso de chaves implícitas é essencial para que o consumo de tempo dessas operações seja constante.  

@@ -1,0 +1,71 @@
+\begin{thebibliography}{10}
+
+\bibitem{wiki:LinkCutTree}
+Link-cut tree.
+\newblock Wikip\'edia: a enciclop\'edia livre, March 2022.
+\newblock {\small{\texttt{https://en.wikipedia.org/}
+  \texttt{wiki/Link/cut\_tree}}}.
+
+\bibitem{RamchandraCODEFORCE}
+R.~Apte.
+\newblock Link-cut tree tutorial.
+\newblock CodeForces, March 2022.
+\newblock {\small{\texttt{https://codeforces.com/} \texttt{blog/entry/80383}}}.
+
+\bibitem{DemaineHJSI2012}
+E.~Demaine, J.~Holmgren (scriber), J.~Jian (scriber), M.~Stepanenko (scriber),
+  and M.~Ishaque (scriber).
+\newblock Link-cut trees problems.
+\newblock Lecture Notes in Advanced Data Structures, 2012.
+
+\bibitem{DemaineL2007}
+E.~Demaine and K.~Lai (scriber).
+\newblock Dynamic graph problems.
+\newblock Lecture Notes in Advanced Data Structures, 2007.
+
+\bibitem{DemetrescuFI2004}
+C.~Demetrescu, I.~Finocchi, and G.~F. Italiano.
+\newblock {\em Handbook of Data Structures and Applications}, chapter Dynamic
+  Graphs.
+\newblock Chapman and Hall/CRC, 2004.
+
+\bibitem{EvenS1981}
+S.~Even and Y.~Shiloach.
+\newblock An on-line edge-deletion problem.
+\newblock {\em Journal of the ACM}, 28(1):1--4, 1981.
+
+\bibitem{HenzingerK1995}
+M.~R. Henzinger and V.~King.
+\newblock Randomized dynamic graph algorithms with polylogarithmic time per
+  operation.
+\newblock In {\em Proceedings of the Twenty-Seventh Annual ACM Symposium on
+  Theory of Computing (STOC)}, page 519, 1995.
+
+\bibitem{HolmLT2001}
+J.~Holm, K.~de~Lichtenberg, and M.~Thorup.
+\newblock Poly-logarithmic deterministic fully-dynamic algorithms for
+  connectivity, minimum spanning tree, 2-edge, and biconnectivity.
+\newblock {\em Journal of the ACM}, 48(4):723, 2001.
+
+\bibitem{SedgewickW2011}
+R.~Sedgewick and K.~Wayne.
+\newblock {\em Algorithms}.
+\newblock Addison-Wesley, 4 edition, 2011.
+
+\bibitem{SleatorT1983}
+D.~D. Sleator and R.~E. Tarjan.
+\newblock A data structure for dynamic trees.
+\newblock In {\em Proceedings of the Thirteenth Annual ACM Symposium on Theory
+  of Computing (STOC)}, page 114, 1983.
+
+\bibitem{SleatorT1985}
+D.~D. Sleator and R.~E. Tarjan.
+\newblock Self-adjusting binary search trees.
+\newblock {\em Journal of the ACM}, 32(3):652--686, 1985.
+
+\bibitem{Tarjan1975}
+R.~E. Tarjan.
+\newblock Efficiency of a good but not linear set union algorithm.
+\newblock {\em Journal of the ACM}, 22(2):215--225, 1975.
+
+\end{thebibliography}

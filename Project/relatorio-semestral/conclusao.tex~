@@ -1,0 +1,13 @@
+O próximo passo será a criação de mais testes para fazer a análise de robustez e desempenho da \emph{link-cut tree}. Se encontrarmos resultados interessantes, registraremos essas medidas no repositório em que o código fonte está. Este pode ser encontrado em: \texttt{https://github.com/danlawand/conexidade-dinamica}.  
+
+\textcolor{red}{\textbf{Retiro o que está em vermelho e deixo o que está em azul?}}
+
+\textcolor{red}{Ao final dos estudos das \emph{link-cut trees} passaremos a estudar as \emph{Euler tour trees}, uma outra estrutura de dados que resolve problemas de conexidade totalmente dinâmica. Primeiramente, estudaremos o funcionamento da estrutura de dados e verificaremos se esta faz uso de outras estruturas. Em caso positivo, estudaremos e implementaremos as estruturas de dados base para as \emph{Euler tour trees}. Após isso, implementaremos as \emph{Euler tour trees} e realizaremos testes para verificar a robustez da implementação. Por fim, seguiremos com a escrita do texto descrevendo como foi a implementação das \emph{Euler tour trees} e comentando os resultados obtidos das análises. Esperamos que essa etapa dure cerca de 4 meses.}  
+
+\textcolor{red}{Se conseguirmos seguir este cronograma, teremos ainda tempo para iniciar os estudos de mais um tópico relacionado ao tema.  Como há bastante material disponível, pretendemos, a medida que nos aprofundamos nos estudos planejados, escolher mais algum tópico relacionado para estudar, se houver tempo após completarmos estas etapas do projeto.}  
+
+
+
+
+\textcolor{blue}{Ao final dos estudos das \emph{link-cut trees} teremos concluído os estudos do problema da conexidade totalmente dinâmica para florestas usando \emph{link-cut trees}. E passaremos a estudar um problema mais abrangente que é o da conexidade totalmente dinâmica em grafos arbitrários, que utiliza a biblioteca de conexidade para florestas. Projetamos que esse estudo dure cerca de 6 meses, portanto, não haverá mais tempo para outro tópico além desse.}  
+

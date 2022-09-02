@@ -1,0 +1,20 @@
+Nesta seção descreveremos como utilizar \emph{link-cut trees} para implementar florestas dinâmicas. Especificamente queremos implementar a seguinte interface para manutenção de uma floresta dinâmica:
+
+\begin{itemize}
+    \item \texttt{dynamicForest(n)}: cria uma floresta com $n$ vértices sem arestas; os vértices são identificados pelos números de $0$ a $n-1$.  
+    \item \texttt{addEdge(i, j)}: recebe dois vértices $i$ e $j$ em componentes distintos da floresta corrente e adiciona a aresta $ij$ na floresta.  
+    \item \texttt{deleteEdge(i, j)}: recebe dois vértices $i$ e $j$ que correspondem a uma aresta da floresta corrente e removem a aresta $ij$ da floresta.  
+    \item \texttt{connected(i, j)}: devolve verdadeiro se $i$ e $j$ estão na mesma componente da floresta corrente, falso caso contrário.  
+\end{itemize}
+
+
+Podemos implementar essas rotinas utilizando \emph{link-cut trees} da seguinte maneira.
+
+O \texttt{dynamicForest(n)} aciona o \texttt{maketree} $n$ vezes a um custo $\Oh(n)$, guardando as referências das n \emph{link-cut trees} criadas.  
+
+O \texttt{connected(i, j)} aciona o \texttt{findroot} para $i$ e para $j$ e a partir dos resultados devolvidos decide se $i$ e $j$ estão ou não na mesma componenete da floresta. O custo amortizado desta operação é $\Oh(\lg n)$.  
+
+O \texttt{addEdge(i, j)} aciona o \texttt{evert} em $i$ e depois aciona o \texttt{link} nos nós correspondentes a $i$ e $j$ nas \emph{link-cut trees}. O custo amortizado da operação é $\Oh(\lg n)$.  
+
+O \texttt{deleteEdge(i, j)} aciona o \texttt{cut} nos nós correspondentes a $i$ e $j$ nas \emph{link-cut trees}. O custo amortizado da operação é $\Oh(\lg n)$.  
+

@@ -1,0 +1,80 @@
+O objetivo desta iniciação científica é o estudo e implementação de estruturas de dados e algoritmos 
+para problemas de conexidade em grafos num contexto onde o grafo pode sofrer 
+modificações~\cite{DemetrescuFI2004}.  
+
+O problema central é o de manter informações sobre as componentes conexas do grafo, 
+ou mais exatamente, o problema de responder eficientemente consultas do tipo: 
+\begin{itemize}
+\item Quantas componentes têm o grafo?
+\item Os vértices $u$ e $v$ estão numa mesma componente do grafo?
+\end{itemize}
+
+Num contexto estático, em que o grafo não sofre alterações, há algoritmos lineares que 
+determinam as componentes conexas do grafo e respondem de maneira ótima consultas como estas.
+
+No entanto, se o grafo em questão está sendo alterado, podendo ganhar ou perder arestas, 
+o problema torna-se mais desafiador.  Os tipos de modificações permitidas determinam 
+a dificuldade do problema.  Podemos considerar as três seguintes possibilidades: 
+\begin{itemize}
+\item {\bf conexidade incremental:} arestas podem ser acrescentadas ao grafo; 
+\item {\bf conexidade decremental:} arestas podem ser removidas do grafo;
+\item {\bf conexidade totalmente dinâmica:} arestas podem ser acrescidas ou removidas do grafo.
+\end{itemize}
+
+O problema de conexidade incremental é resolvido de maneira bastante eficiente por meio de 
+uma estrutura de dados conhecida como \emph{union-find}~\cite{Tarjan1975}, que provê resposta 
+às consultas em tempo amortizado aproximadamente constante. 
+
+O problema de conexidade decremental foi resolvido por Even e Shiloach~\cite{EvenS1981}.  
+O método usa uma tabela onde se mantem o identificador da componente de cada vértice do grafo.  
+A grande questão é como atualizar essa tabela quando da remoção de uma aresta. 
+
+Se o grafo em questão é uma floresta, ou seja, não tem circuitos, o problema é mais simples.  
+A ideia é que a remoção de uma aresta sempre quebrará uma componente em duas, e atualizaremos
+os identificadores do menor dos dois pedaços resultantes.  Ao remover por exemplo a aresta $uv$, 
+devemos determinar se o pedaço em que $u$ ficou é menor ou maior que o pedaço em que $v$ ficou.  
+Isso pode ser feito por exemplo usando-se duas buscas, uma a partir de $u$ e uma a partir de $v$, 
+que são executadas paralelamente (ou de maneira intercalada) e, ao chegarmos ao final de uma delas, 
+abortamos a segunda, pois determinamos já qual é o menor dos pedaços.  O tempo gasto desta maneira 
+será proporcional ao tamanho do menor dos pedaços, implicando que o tempo para a atualização, 
+amortizado pelo número de consultas, é $\Oh(\lg n)$, onde $n$ é o número de vértices do grafo.
+
+Para grafos arbitrários, é necessário determinar se a aresta $uv$ removida quebra ou não uma 
+componente em duas.  A ideia de novo é executar dois processos em paralelo (ou intercaladamente): 
+um para determinar se $u$ e $v$ estão ainda na mesma componente após a remoção de $uv$, e o
+outro para decidir se uma componente foi quebrada em duas.  Esse segundo processo é semelhante
+ao que foi usado no caso em que o grafo é uma floresta.  Já o procedimento envolvido no 
+primeiro processo é um pouco mais sofisticado, e utiliza uma estrutura de dados construída 
+a partir de uma BFS do grafo original, que vai sendo atualizada a medida que o grafo vai 
+sofrendo remoções de arestas. 
+
+\newcommand{\FindRoot}{\mbox{\sc FindRoot}}
+\newcommand{\FindSet}{\mbox{\sc FindSet}}
+
+Para conexidade totalmente dinâmica em florestas com $n$ vértices, 
+podemos usar uma coleção das chamadas \emph{link-cut trees}~\cite{SleatorT1983} ou 
+das chamadas \emph{Euler tour trees}~\cite{HenzingerK1995} para representar a floresta.  
+Estas estruturas implementam uma rotina chamada $\FindRoot(x)$, 
+semelhante à rotina $\FindSet(x)$ do union-find, que devolve 
+um representante da componente em que o vértice $x$ se encontra. 
+Com isso, podemos responder às consultas facilmente, pois dois vértices $x$ e $y$ 
+estão na mesma componente da floresta se e somente se $\FindRoot(x) = \FindRoot(y)$.
+O tempo amortizado de atualização e consulta é $\Oh(\lg n)$.
+
+Para o caso geral da conexidade totalmente dinâmica, podemos representar um grafo arbitrário  
+por uma floresta geradora maximal do grafo.  Se chamarmos uma tal floresta de $F$, podemos 
+usar por exemplo \emph{link-cut trees} para armazená-la.  Com isso, inserções e consultas 
+podem ser implementadas diretamente usando as operações correspondentes destas árvores.  
+Por outro lado, as remoções são mais desafiadoras.  Em especial, se a aresta removida fizer
+parte da floresta $F$, isso pode requerer encontrar, de forma eficiente, uma outra aresta 
+do grafo para ser adicionada a~$F$. Esta operação é implementada por meio de uma estrutura
+de dados mais complexa~\cite{DemaineL2007}. 
+
+No período a que se refere esse relatório, completamos a implementação das \emph{link-cut trees} 
+e a solução do problema de conexidade totalmente dinâmica para florestas.
+
+Essa implementação envolve, entre outras coisas, a implementação de uma versão particular das chamadas \emph{splay trees}, 
+que são árvores de busca binária que se auto-balanceiam.
+
+No que segue, descrevemos brevemente as \emph{splay trees} implementadas, depois descrevemos a implementação das \emph{link-cut trees} 
+utilizando as \emph{splay trees} e finalizamos descrevendo a implementação da biblioteca do problema da conexidade totalmente dinâmica para florestas, usando as \emph{link-cut trees}.
