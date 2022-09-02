@@ -119,6 +119,7 @@ void cut(Node v) {
 	// printDump(v);
 
 	access(v);
+	// splay de v contém apenas i, ij , j. E o j está na raiz da splay.
 
 	// printf("\nDepois do Access\n");
 	// printDump(v);
@@ -127,17 +128,26 @@ void cut(Node v) {
 	// if (v->children[0] != NULL) valor = v->children[0]->val;
 
 	Node m = maxSplay(v->children[0]);
-	// split(m); old version
+	// m é o nó aresta ij (ij = m)
 
-	// retiro o 'm', que é a aresta, do seu filho direito.
-	// Porém, ela permanece conectada com o filho esquerdo. 
+	// agora o ij está na raiz
 
+	if (m->edgeLevel != -1) {
+		printf("m é aresta de level = %d\n", m->edgeLevel);
+	} else {
+		printf("m %d nãe é aresta\n", m->val);
+	}
 
-	// versão mais atual
-	Node u = m->children[0];
-	splay(u);
-	// Agora u tem bit zero. Portanto posso cortá-lo
-	split(u);
+	split(m);
+
+	Node i = m->children[0];
+
+	splay(i);
+
+	split(i);
+
+	
+	// free m
 }
 
 int sizeLct(Node v) {

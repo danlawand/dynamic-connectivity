@@ -80,7 +80,8 @@ void deleteEdge(LCT lc, int i, int j) {
 
     // Após isso, o cut(j) é garantido que corto a aresta i-j e não outra.
             // Antes, não teríamos essa garantia. Porque i poderia ser filho de j na LCT. Assim, não cortaria a aresta i-j, mas sim j-parent(j).
-    cut(lc->nodes[j]);
+
+    cut(lc->nodes[j]); // deleta a aresta ij
 }
 
 int connected(LCT lc, int i, int j) {

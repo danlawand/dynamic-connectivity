@@ -10,7 +10,7 @@ static Node sibling(Node);
 
 static void swapChildren(Node);
 
-static void pushBitUp(Node);
+// static void pushBitUp(Node);
 
 static void pushBitDown(Node);
 
@@ -114,14 +114,20 @@ void split(Node x) {
 */
 
 void splay (Node x) {
-	pushBitUp(x);
 	while (x->parent != NULL) {
 		Node p = x->parent;
-		pushBitUp(p);
-		if (p->parent == NULL) rotate(x);
+		if (p->parent == NULL) {
+			pushBitDown(p);
+			pushBitDown(x);
+			rotate(x);
+		}
 		else { 
 			Node g = p->parent;
-			pushBitUp(g);
+
+			// A ordem importa aqui
+			pushBitDown(g);
+			pushBitDown(p);
+			pushBitDown(x);
 			if (x->bit == 1) {
 				printf("*************** Erro: X Bit %d é 1 no splay ***************\n", x->val);
 				// exit(0);
@@ -237,19 +243,19 @@ static Node maximum(Node x) {
 	return maximum(x->children[1]);
 }
 
-// Se o x for a raiz, não mexe no bit.
-static void pushBitUp(Node x) {
-	if (x->bit == 1) {
-		Node p = x->parent;
-		if (p != NULL) {
-			p->bit = 1 - p->bit;
-			Node s = sibling(x);
-			if (s != NULL) s->bit = 1 - s->bit;
-			swapChildren(p);
-			x->bit = 0;
-		}
-	}
-}
+// // Se o x for a raiz, não mexe no bit.
+// static void pushBitUp(Node x) {
+// 	if (x->bit == 1) {
+// 		Node p = x->parent;
+// 		if (p != NULL) {
+// 			p->bit = 1 - p->bit;
+// 			Node s = sibling(x);
+// 			if (s != NULL) s->bit = 1 - s->bit;
+// 			swapChildren(p);
+// 			x->bit = 0;
+// 		}
+// 	}
+// }
 
 // Não se assume nada sobre o bit do x
 static void pushBitDown(Node x) {

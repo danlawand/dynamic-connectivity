@@ -74,11 +74,12 @@ void quemEhPai(Node x, FILE* fp) {
 		if(x->parent == NULL) {
 			fprintf(fp, "%d->parent: Eh null\n",x->val);
 		} else {
-			if(x->parent->parent != NULL) {
-				fprintf(fp, "(No 0) %d->parent: %d\n",x->val, x->parent->parent->val);
-			} else {
-				fprintf(fp, "(No 1) %d->parent: Eh null\n",x->val);
-			}
+			printf("%d->parent: Nao eh null\n",x->val);
+			// if(x->parent->parent != NULL) {
+			// 	fprintf(fp, "(No 0) %d->parent: %d\n",x->val, x->parent->parent->val);
+			// } else {
+			// 	fprintf(fp, "(No 1) %d->parent: Eh null\n",x->val);
+			// }
 		}
 	}
 
@@ -93,11 +94,12 @@ void quemEhPai(Node x, FILE* fp) {
 	if(x->parent == NULL) {
 		printf("%d->parent: Eh null\n",x->val);
 	} else {
-		if(x->parent->parent != NULL) {
-			printf("(No 0) %d->parent: %d\n",x->val, x->parent->parent->val);
-		} else {
-			printf("(No 1) %d->parent: Eh null\n",x->val);
-		}
+		printf("%d->parent: Nao eh null\n",x->val);
+		// if(x->parent->parent != NULL) {
+		// 	printf("(No 0) %d->parent: %d\n",x->val, x->parent->parent->val);
+		// } else {
+		// 	printf("(No 1) %d->parent: Eh null\n",x->val);
+		// }
 	}
 }
 
@@ -254,7 +256,8 @@ static Node raizSplay(Node x) {
 // função auxiliar de 'analisaSplay', para analisar em pre-ordem a splay
 static void analisaPreOrdemSplay(Node x) {
 	if (x == NULL) return;
-	if (x->edgeLevel != -1) {
+	if (x->edgeLevel != -1) { // se for aresta, não me interessa
+		printf("Passou por uma aresta\n");
 		analisaPreOrdemSplay(x->children[0]);
 		analisaPreOrdemSplay(x->children[1]);
 		return;
