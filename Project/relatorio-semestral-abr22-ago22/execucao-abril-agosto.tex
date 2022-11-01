@@ -1,0 +1,17 @@
+Durante a análise de robustez, quando submetemos a implementação que tínhamos a mais testes, foram encontrados alguns pequenos problemas e gastamos mais tempo do que prevíamos até ter uma versão robusta da implementação. O maior problema foi no esquema utilizado para implementar a rotina \texttt{reflectTree} e a rotina \texttt{evert}. 
+
+Depois disso começamos a estudar o algoritmo de Holm et al~\cite{HolmLT2001} que resolve o problema da conexidade dinâmica. Ao final desse estudo, definimos algumas fases para o projeto, e no atual momento conseguimos implementar parte dessas fases. O nosso programa ficou desta maneira:
+\begin{enumerate}[label*=\arabic*.]
+    \item Incluir os nós das arestas na implementação;
+    \item Criar percursos que identifiquem os nós das arestas; 
+    \item Fazer testes do percurso em três níveis: 
+    \begin{enumerate}[label*=\arabic*.]
+        \item Atribuir um nível às arestas igual ao nível da árvore, e verificar se o percurso mostra todas as arestas da floresta;
+        \item Atribuir um nível às arestas diferente do nível da árvore, e verificar se o percurso mostra a floresta sem nenhuma aresta;
+        \item Atribuir níveis diferentes a cada aresta, e verificar se o percurso mostra apenas as arestas de mesmo nível da árvore;
+    \end{enumerate}
+    \item Incluir a remoção dos nós arestas na implementação; 
+    \item Refazer os testes e verificar se está tudo nos conformes;
+\end{enumerate}
+
+Desse nosso programa, nós conseguimos implementar o item 1 integralmente, já o item 2 foi implementado, mas está no processo de validação, pois será no item 3 que saberemos se está robusto ou não. Dessa forma, o item 3 está parcialmente completo, visto que temos o item 3.1 completo, mas os itens subsequentes não. E por fim, os itens 4 e 5, não estão implementados, apesar de termos tentado incluir a remoção na implementação, que não funcionou.

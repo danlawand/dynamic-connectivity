@@ -95,8 +95,8 @@ int sizeTree(LCT lc, int i) {
 }
 
 
-void inorderTraversal(LCT lc, int i) {
-    printf("inorderTraversal ");
+void traversal(LCT lc, int i) {
+    printf("traversal ");
     access(lc->nodes[i]);
     percursoNode(lc->nodes[i]);
     printf("\n\n");

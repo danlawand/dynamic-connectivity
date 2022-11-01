@@ -111,7 +111,7 @@ Node findroot(Node v) {
 	Node m = minSplay(v);
 	return m;
 }
-
+// ####################################### Voltar o cut ao seu formato original, pois as alterações que se referem às arestas devem estar no deleteEdge
 // retira a aresta 'v'-ij-'v->parent'
 void cut(Node v) {
 	// printf("No Cut\n");

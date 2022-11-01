@@ -6,7 +6,7 @@ básica das \emph{link-cut trees} uma operação extra.
 Começaremos descrevendo a biblioteca básica, voltada a florestas enraizadas~\cite{RamchandraCODEFORCE}. A interface básica neste caso contém as seguintes rotinas:  
 
 \begin{itemize}
-    \item \texttt{maketree()}: cria uma árvore enraizada com um único nó e o devolve.  
+    \item \texttt{maketree(l)}: {\color{red}recebe um inteiro $l$ e} cria uma árvore enraizada com um único nó {\color{red}de nível $l$} e o devolve.  
 
     \item \texttt{link(Node u, Node v)}: recebe um nó \texttt{u} que é raiz de uma árvore enraizada e um nó \texttt{v} de uma outra árvore enraizada e adiciona o arco de \texttt{u} para \texttt{v} juntando as duas árvores enraizadas.
 
@@ -53,9 +53,11 @@ Com essa operação, conseguimos descrever as operações \texttt{link}, \texttt
 
 No \texttt{link(u, v)}, acionamos o \texttt{access}~\cite{wiki:LinkCutTree} em \texttt{u} e em \texttt{v}, e depois acionamos um \texttt{join} das \emph{splay trees} dos caminhos preferenciais de \texttt{u} e de \texttt{v}.  
 
+{\color{red}[comentário]O cut sofreu algumas alterações, mas que ainda não estão 100\% validadas, como faço? Mostro as alterações aqui ou não as mostro?}
+
 No \texttt{cut(v)}, acionamos o \texttt{access} em \texttt{v} e o \texttt{split} no predecessor do \texttt{v} na \emph{splay tree} do seu caminho preferencial.  
 
-No \texttt{evert(v)}, acionamos o \texttt{access} em \texttt{v} e em seguida o \texttt{reflect} na \emph{splay tree} do caminho preferencial de \texttt{v}.  
+No \texttt{evert(v)}, acionamos o \texttt{access} em \texttt{v} e em seguida o \texttt{reflectTree} na \emph{splay tree} do caminho preferencial de \texttt{v}.  
 
 A operação \texttt{access} é a mais complexa, pois modifica várias das \emph{splay trees} que compõem a \emph{link-cut tree} de uma árvore enraizada. Devido tal complexidade, decidimos, nesse relatório, por omitir a descrição dessa operação em termos das operações das \emph{splay trees}.  
 

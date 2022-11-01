@@ -1,0 +1,23 @@
+Nesta seção descreveremos como utilizar \emph{link-cut trees} para implementar florestas dinâmicas. Especificamente queremos implementar a seguinte interface para manutenção de uma floresta dinâmica:
+
+\begin{itemize}
+    \item \texttt{dynamicForest(n)}: cria uma floresta com $n$ vértices sem arestas; os vértices são identificados pelos números de $0$ a $n-1$.  
+    \item \texttt{addEdge({\color{red} LCT},i, j)}: {\color{red}recebe uma floresta LCT} e  dois vértices $i$ e $j$ em componentes distintos da floresta e adiciona a aresta $ij$ na floresta.  {\color{red}[Comentario] Devo colocar aqui que agora se cria um nó vértice, coisa que antes não ocorria?}
+    \item \texttt{deleteEdge({\color{red} LCT},i, j)}: {\color{red}recebe uma floresta  LCT} e dois vértices $i$ e $j$ que correspondem a uma aresta da floresta e remove a aresta $ij$ da floresta.  {\color{red}[Comentario] Devo colocar aqui que agora se remove um nó vértice, coisa que antes não ocorria?}
+    \item \texttt{connected({\color{red} LCT}, i, j)}: devolve verdadeiro se $i$ e $j$ estão na mesma componente da floresta {\color{red} LCT}, falso caso contrário.  
+    {\color{red} \item \texttt{inorderTraversal()}}
+\end{itemize}
+
+
+Podemos implementar essas rotinas utilizando \emph{link-cut trees} da seguinte maneira.
+
+O \texttt{dynamicForest(n)} aciona o \texttt{maketree} $n$ vezes a um custo $\Oh(n)$, retornando as referências das n \emph{link-cut trees} criadas.  
+
+O \texttt{connected({\color{red} LCT}, i, j)} aciona o \texttt{findroot} para $i$ e para $j$ pertencentes à floresta LCT, e a partir dos resultados devolvidos decide se $i$ e $j$ estão ou não na mesma componente da floresta. O custo amortizado desta operação é $\Oh(\lg n)$.  
+
+{\color{red}[Comentario] As rotinas seguintes sofreram alterações significativas, mas não estão funcionando 100\%, explico o que se está fazendo no código mesmo não estando funcionando sempre?}
+
+O \texttt{addEdge({\color{red} LCT}, i, j)} aciona o \texttt{evert} em $i$ e depois aciona o \texttt{link} nos nós correspondentes a $i$ e $j$ nas \emph{link-cut trees}. O custo amortizado da operação é $\Oh(\lg n)$.  
+
+O \texttt{deleteEdge({\color{red} LCT}, i, j)} aciona o \texttt{cut} nos nós correspondentes a $i$ e $j$ nas \emph{link-cut trees}. O custo amortizado da operação é $\Oh(\lg n)$.  
+

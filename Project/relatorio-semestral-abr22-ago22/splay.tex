@@ -7,7 +7,7 @@ Para o propósito desse trabalho, a chave dos elementos armazenados na \emph{spl
 
 
 \begin{itemize}
-    \item \texttt{makeSplay()}: retorna a raiz de uma \emph{splay tree} com apenas um nó, com consumo de tempo de $\Oh(1)$.  
+    \item \texttt{makeSplay(l)}: {\color{red} recebe um inteiro $l$ que determina o nível do nó no grafo e} retorna a raiz de uma \emph{splay tree} com apenas um nó, com consumo de tempo de $\Oh(1)$.  
 
     \item \texttt{splay(Node v)}: recebe um nó \texttt{v} de uma \emph{splay tree}, tornando-o raiz desta \emph{splay tree}, com consumo amortizado de tempo de $\Oh(\lg n)$.  
 
@@ -19,9 +19,9 @@ Para o propósito desse trabalho, a chave dos elementos armazenados na \emph{spl
 
     \item \texttt{minSplay(Node v)}: retorna o nó com chave mínima da \emph{splay tree} a que \texttt{v} pertence, com consumo amortizado de tempo de $\Oh(\lg n)$.  
 
-    \item \texttt{reflect(Node v)}: inverte o percurso em in-ordem da \emph{splay tree} enraizada em \texttt{v}. O efeito dessa operação numa ABB com chaves implícitas é a alteração de todas as chaves dos nós desta árvore de $0, 1, \cdots, t{-}1,t$ para $t,t{-}1\cdots, 1, 0$. Essa rotina consome tempo~$\Oh(1)$.  
+    \item \texttt{reflectTree(Node v)}: inverte o percurso em in-ordem da \emph{splay tree} enraizada em \texttt{v}. O efeito dessa operação numa ABB com chaves implícitas é a alteração de todas as chaves dos nós desta árvore de $0, 1, \cdots, t{-}1,t$ para $t,t{-}1\cdots, 1, 0$. Essa rotina consome tempo~$\Oh(1)$.  
 
 
 \end{itemize}
 
-Nessa implementação, não há inserção ou remoção de nós, pois as \emph{splay trees} crescem com a rotina \texttt{join} e diminuem através da rotina \texttt{split}, que quebra a árvore em duas. Também não faremos buscas nessas árvores. Note também que as operações \texttt{join}, \texttt{split} e \texttt{reflect} alteram implicitamente a chave de vários nós das árvores manipuladas. O uso de chaves implícitas é essencial para que o consumo de tempo dessas operações seja constante.  
+Nessa implementação, não há inserção ou remoção de nós, pois as \emph{splay trees} crescem com a rotina \texttt{join} e diminuem através da rotina \texttt{split}, que quebra a árvore em duas. Também não faremos buscas nessas árvores. Note também que as operações \texttt{join}, \texttt{split} e \texttt{reflectTree} alteram implicitamente a chave de vários nós das árvores manipuladas. O uso de chaves implícitas é essencial para que o consumo de tempo dessas operações seja constante.  

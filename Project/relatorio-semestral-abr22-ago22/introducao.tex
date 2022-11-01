@@ -70,10 +70,12 @@ parte da floresta $F$, isso pode requerer encontrar, de forma eficiente, uma out
 do grafo para ser adicionada a~$F$. Esta operação é implementada por meio de uma estrutura
 de dados mais complexa~\cite{DemaineL2007}. 
 
-No período a que se refere esse relatório, completamos a implementação das \emph{link-cut trees} 
+No período de agosto de 2021 a março de 2022, completamos a implementação das \emph{link-cut trees} 
 e a solução do problema de conexidade totalmente dinâmica para florestas.
 Essa implementação envolve, entre outras coisas, a implementação de uma versão particular das chamadas \emph{splay trees}, 
 que são árvores de busca binária de busca que se auto-balanceiam.
+
+{\color{red}No período de abril de 2022 a agosto de 2022, estudamos o problema mais geral da conexidade totalmente dinâmica em grafos arbitrários.   Uma das soluções da literatura para este problema utiliza a biblioteca de conexidade para florestas~\cite{HolmLT2001}. Trata-se de um algoritmo sofisticado, que mantém várias florestas geradoras do grafo corrente, cada uma representa diferentes níveis do grafo, e estas florestas são mantidas por meio de \emph{link-cut trees} como no problema da conexidade dinâmica em florestas.}
 
 No que segue, descrevemos brevemente as \emph{splay trees} implementadas, depois descrevemos a implementação das \emph{link-cut trees} 
 utilizando as \emph{splay trees} e finalizamos descrevendo a implementação da biblioteca do problema da conexidade totalmente dinâmica para florestas, usando as \emph{link-cut trees}.

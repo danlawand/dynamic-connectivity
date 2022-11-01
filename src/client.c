@@ -187,7 +187,7 @@ int main(int argc, char * argv[]) {
 
 	// for (int i = 0; i < n_vertices; i++) {
 	// 	printf("Chamada de %d:\n", i);
-	// 	inorderTraversal(linkCutTree, i);
+	// 	traversal(linkCutTree, i);
 	// 	printf("\n\n");
 
 	// }

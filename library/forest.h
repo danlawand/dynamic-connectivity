@@ -18,7 +18,7 @@ int connected(LCT, int, int);
 
 int sizeTree(LCT, int);
 
-void inorderTraversal(LCT, int v);
+void traversal(LCT, int v);
 // void bfsTraversal(int v);
 
 // Seria bom ter um freeForest, freeLCT, freeSplay, freeNode ...
