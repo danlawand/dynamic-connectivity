@@ -10,8 +10,9 @@ struct node {
 	Node parent;
 	Node pathParent;
 	int bit;
+	int size;
 };
 
-Node newNode(Value, Node, Node, Node, Node, int);
+Node newNode(Value, Node, Node, Node, Node, int, int);
 
 #endif
