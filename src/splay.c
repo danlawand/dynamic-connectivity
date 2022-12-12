@@ -8,8 +8,6 @@ static Node sibling(Node);
 
 static void swapChildren(Node);
 
-static void pushBitUp(Node);
-
 static void pushBitDown(Node);
 
 static void  rotate(Node);
@@ -90,6 +88,18 @@ static void rotate(Node x) {
 
 	else {
 		p->children[1] = x->children[0];
+
+static void pushBitUp(Node x) {
+	Node p = x->parent;
+	p->bit = 1 - p->bit;
+
+	Node s = sibling(x);
+
+	if (s != NULL) s->bit = 1 - s->bit;
+	swapChildren(p);
+	x->bit = 0;
+}
+
 		if (x->children[0] != NULL) {
 			x->children[0]->parent = p;
 			sizeChild = x->children[0]->size;
@@ -137,19 +147,6 @@ static Node maximum(Node x) {
 	if (x->children[1-x->bit] == NULL) return x;
 	return maximum(x->children[1-x->bit]);
 }
-
-
-static void pushBitUp(Node x) {
-	Node p = x->parent;
-	p->bit = 1 - p->bit;
-
-	Node s = sibling(x);
-
-	if (s != NULL) s->bit = 1 - s->bit;
-	swapChildren(p);
-	x->bit = 0;
-}
-
 
 static void pushBitDown(Node x) {
 	if (x->bit == 1) {
