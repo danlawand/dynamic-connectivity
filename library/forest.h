@@ -11,4 +11,6 @@ void deleteEdge(int, int);
 
 int connected(int, int);
 
+int sizeForest(int);
+
 #endif

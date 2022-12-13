@@ -14,4 +14,6 @@ void evert(Node);
 
 void cut(Node);
 
+int size(Node);
+
 #endif

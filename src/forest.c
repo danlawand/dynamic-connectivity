@@ -27,3 +27,7 @@ int connected(int i, int j) {
     if (findroot(nodes[i]) == findroot(nodes[j])) return 1;
     return 0;
 }
+
+int sizeForest(int i) {
+    return size(findroot(nodes[i]));
+}
