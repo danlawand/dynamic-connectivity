@@ -132,6 +132,7 @@ Node minSplay(Node x) {
 }
 
 static Node minimum(Node x) {
+	// Dou pushBitDown, pois caso tenha um bit 1 nas subárvores, então, preciso passar para baixo, para saber qual caminho devo prosseguir
 	pushBitDown(x);
 	if (x->children[x->bit] == NULL) return x;
 	return minimum(x->children[x->bit]);
@@ -145,6 +146,7 @@ Node maxSplay(Node x) {
 }
 
 static Node maximum(Node x) {
+	// Dou pushBitDown, pois caso tenha um bit 1 nas subárvores, então, preciso passar para baixo, para saber qual caminho devo prosseguir
 	pushBitDown(x);
 	if (x->children[1-x->bit] == NULL) return x;
 	return maximum(x->children[1-x->bit]);

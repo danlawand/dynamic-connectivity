@@ -18,7 +18,9 @@ void addEdge(int i, int j) {
 }
 
 void deleteEdge(int i, int j) {
-    cut(nodes[i]);
+    // evert(i) faz com que i seja a raiz da LCT, assim, i é mais superficial do que j na LCT, portanto, se houver aresta entre i e j, j é filho de i na LCT
+    evert(nodes[i]);
+    cut(nodes[j]);
 }
 
 int connected(int i, int j) {
