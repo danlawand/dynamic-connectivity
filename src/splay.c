@@ -26,6 +26,7 @@ void reflectTree(Node v) {
 	pushBitDown(v);
 }
 
+// w se torna filho direito de v
 void join(Node v, Node w) {
 	v->children[1] = w;
 	w->parent = v;
