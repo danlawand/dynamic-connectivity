@@ -50,19 +50,33 @@ void splay (Node x) {
 	while (x->parent != NULL) {
 		Node p = x->parent;
 
-		if (p->parent == NULL) rotate(x);
+		if (p->parent == NULL) {
+			pushBitDown(p);
+			pushBitDown(x);
+			rotate(x);
+		} else {
+			Node g = p->parent;
 
-		else if (( p == p->parent->children[0] && x == p->children[p->bit] ) ||
-		( p == p->parent->children[1] && x == p->children[1 - p->bit] )) {
-			rotate(p);
-			rotate(x);
-		}
+			// A ordem importa aqui
+			pushBitDown(g);
+			pushBitDown(p);
+			pushBitDown(x);
 
-		else {
-			rotate(x);
-			rotate(x);
+			// Zig-Zig ou Zag-Zag
+			if (( p == g->children[0] && x == p->children[0] ) ||
+			( p == g->children[1] && x == p->children[1] )) {
+				rotate(p);
+				rotate(x);
+			}
+
+			// Zig-Zag ou Zag-Zig
+			else {
+				rotate(x);
+				rotate(x);
+			}
 		}
 	}
+	// Garantir que a raiz tenha bit 0
 	pushBitDown(x);
 	root = x;
 }

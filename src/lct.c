@@ -8,7 +8,7 @@ Node maketree() {
 	return makeSplay();
 }
 
-
+// Ao final do access V é raiz de sua splay tree, em outras palavras, V não tem filho direito, pois V é o nó de chave maior na splay, portanto é o nó de maior profundidade na LCT
 void access(Node v) {
 	Node w;
 	splay(v);
