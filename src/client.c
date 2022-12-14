@@ -25,10 +25,61 @@ void handleFile(FILE* fp) {
     size_t len = 0;
     ssize_t read;
 
+    int i = 0;
+    int j = 0;
+    int n_vertices = 0;
 
+
+    char * first_word = NULL;
+    char * second_word = NULL;
+    char * third_word = NULL;
+    char delim[] = " ";
+    char *ptr = NULL;
+
+
+    // TO-DO: remover os espaços entre cada char da linha e verificar se fala da quantidade de vértices, ou é link ou cut 
+    // Todas as linhas terão 3 palavras, com exceção da primeira linha que só tem uma palavra
     while ((read = getline(&line, &len, fp)) != -1) {
+
+        // Depois retiro essas duas próximas linhas
         printf("Retrieved line of length %zu:\n", read);
         printf("%s", line);
+
+        if (i == 0)
+        {
+            n_vertices =  atoi(line);
+            printf("n: %d\n", n_vertices);
+        } 
+        else
+        {
+            j = 0;
+            first_word = NULL;
+            second_word = NULL;
+            third_word = NULL;
+            
+            // Split string 'line' in words
+            ptr = strtok(line, delim);
+            while (ptr != NULL)
+            {   
+                if (j == 0) {
+                    first_word = ptr;
+                    printf("->'%s'\n", first_word);
+                } else if (j == 1) {
+                    second_word = ptr;
+                    printf("->'%s'\n", second_word);
+                } else if (j == 2) {
+                    third_word = ptr;
+
+                    //remove a newline do fim da third_word
+                    third_word[strlen(third_word)-1] = '\0';
+                    printf("->'%s'\n", third_word);
+                }
+                ptr = strtok(NULL, delim);
+                j++;
+            }
+        }
+
+        i++;
     }
 
     if (line) free(line);
@@ -60,3 +111,21 @@ int main(int argc, char * argv[])
     fclose(arquivo_entrada);
     exit(EXIT_SUCCESS);
 }
+
+
+// int main()
+// {
+// 	char str[] = "strtok needs to be called several times to split a string";
+// 	int init_size = strlen(str);
+// 	char delim[] = "ai";
+
+// 	char *ptr = strtok(str, delim);
+
+// 	while (ptr != NULL)
+// 	{
+// 		printf("'%s'\n", ptr);
+// 		ptr = strtok(NULL, delim);
+// 	}
+
+// 	return 0;
+// }
