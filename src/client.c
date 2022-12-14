@@ -19,13 +19,50 @@ void checkInputArgs(int argc) {
     return;
 }
 
+// Executa a operação desejada
+void executeOperation(char * first_word, char * second_word, char * third_word) {
+    int vertice1, vertice2;
+
+    // Verifica qual é a operação desejada pela linha e executa a operação
+    if (strcmp(first_word,"+") == 0)
+    {
+        vertice1 = atoi(second_word);
+        vertice2 = atoi(third_word);
+        printf("Operação addEdge entre: %d e %d\n", vertice1, vertice2);
+
+        addEdge(vertice1, vertice2);
+
+    } else if (strcmp(first_word,"-") == 0)
+    {
+        vertice1 = atoi(second_word);
+        vertice2 = atoi(third_word);
+        printf("Operação removeEdge entre: %d e %d\n", vertice1, vertice2);
+
+        deleteEdge(vertice1, vertice2);
+
+    } else if (strcmp(first_word,"c") == 0)
+    {
+        vertice1 = atoi(second_word);
+        vertice2 = atoi(third_word);
+        printf("Operação Connected entre: %d e %d\n", vertice1, vertice2);
+
+        connected(vertice1, vertice2);
+        
+    } else {
+        perror("Erro no handleFile caracter não identificado. Não é '+', '-' ou 'c'.\n");
+        exit(EXIT_FAILURE);
+    }
+    return;
+}
+
+
 // Lida com as informações do arquivo de entrada
 void handleFile(FILE* fp) {
     char * line = NULL;
     size_t len = 0;
     ssize_t read;
 
-    int i = 0;
+    int primeira_linha = 1;
     int j = 0;
     int n_vertices = 0;
 
@@ -36,8 +73,8 @@ void handleFile(FILE* fp) {
     char delim[] = " ";
     char *ptr = NULL;
 
+    Node nodes;
 
-    // TO-DO: remover os espaços entre cada char da linha e verificar se fala da quantidade de vértices, ou é link ou cut 
     // Todas as linhas terão 3 palavras, com exceção da primeira linha que só tem uma palavra
     while ((read = getline(&line, &len, fp)) != -1) {
 
@@ -45,11 +82,17 @@ void handleFile(FILE* fp) {
         printf("Retrieved line of length %zu:\n", read);
         printf("%s", line);
 
-        if (i == 0)
+        // se for a primeira linha do arquivo eu leio o número de vértices
+        if (primeira_linha)
         {
             n_vertices =  atoi(line);
             printf("n: %d\n", n_vertices);
+            primeira_linha = 0;
+
+            // Cria a dynamic Forest com n_vertices
+            nodes = dynamicForest(n_vertices);
         } 
+        // caso contrário eu vejo quais são as operações
         else
         {
             j = 0;
@@ -77,9 +120,10 @@ void handleFile(FILE* fp) {
                 ptr = strtok(NULL, delim);
                 j++;
             }
-        }
 
-        i++;
+            // Executa a operação desejada
+            executeOperation(first_word, second_word, third_word);
+        }
     }
 
     if (line) free(line);
