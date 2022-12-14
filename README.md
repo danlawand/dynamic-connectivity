@@ -7,8 +7,12 @@
 
 ## Comentário 13/12/2022
 * Compile: gcc -g client.c -o client
+* Código client feito
+    * Reconhece tests no padrão pré-determinado:
+        - primeira linha é a quantidade de vértices
+        - próximas linhas no padrão a seguir: "+ a b" ou "- c d"
+    * Lê os testes que estão hard-codados no código e printa seu conteúdo.
 
 ### TO-DO
-* Código do cliente
 * Testes para conectividade
 * Makefile
