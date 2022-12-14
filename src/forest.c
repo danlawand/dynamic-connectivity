@@ -3,13 +3,12 @@
 
 static Node *nodes;
 
-Node dynamicForest(int n) {
+void dynamicForest(int n) {
     nodes = mallocSafe(n * sizeof(Node));
 
     for (int i = 0; i < n; ++i) {
         nodes[i] = maketree();
     }
-    return nodes;
 }
 
 void addEdge(int i, int j) {

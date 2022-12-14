@@ -3,7 +3,7 @@
 #include "lct.h"
 
 
-Node dynamicForest(int);
+void dynamicForest(int);
 
 void addEdge(int, int);
 
