@@ -30,7 +30,7 @@ void executeOperation(char * first_word, char * second_word, char * third_word) 
         vertice2 = atoi(third_word);
         printf("Operação addEdge entre: %d e %d\n", vertice1, vertice2);
 
-        addEdge(vertice1, vertice2);
+        // addEdge(vertice1, vertice2);
 
     } else if (strcmp(first_word,"-") == 0)
     {
@@ -38,7 +38,7 @@ void executeOperation(char * first_word, char * second_word, char * third_word) 
         vertice2 = atoi(third_word);
         printf("Operação removeEdge entre: %d e %d\n", vertice1, vertice2);
 
-        deleteEdge(vertice1, vertice2);
+        // deleteEdge(vertice1, vertice2);
 
     } else if (strcmp(first_word,"c") == 0)
     {
@@ -46,8 +46,14 @@ void executeOperation(char * first_word, char * second_word, char * third_word) 
         vertice2 = atoi(third_word);
         printf("Operação Connected entre: %d e %d\n", vertice1, vertice2);
 
-        connected(vertice1, vertice2);
-        
+        // if (connected(vertice1, vertice2))
+        // {
+        //     printf("Vertices %d e %d estão conectados\n", vertice1, vertice2);
+        // }
+        // else
+        // {
+        //     printf("Vertices %d e %d NÃO estão conectados\n", vertice1, vertice2);
+        // }
     } else {
         perror("Erro no handleFile caracter não identificado. Não é '+', '-' ou 'c'.\n");
         exit(EXIT_FAILURE);
@@ -73,7 +79,7 @@ void handleFile(FILE* fp) {
     char delim[] = " ";
     char *ptr = NULL;
 
-    Node nodes;
+    // Node nodes;
 
     // Todas as linhas terão 3 palavras, com exceção da primeira linha que só tem uma palavra
     while ((read = getline(&line, &len, fp)) != -1) {
@@ -90,7 +96,7 @@ void handleFile(FILE* fp) {
             primeira_linha = 0;
 
             // Cria a dynamic Forest com n_vertices
-            nodes = dynamicForest(n_vertices);
+            // nodes = dynamicForest(n_vertices);
         } 
         // caso contrário eu vejo quais são as operações
         else
