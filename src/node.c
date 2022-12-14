@@ -1,5 +1,6 @@
 #include "node.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static void *mallocSafe(size_t);
 
@@ -18,8 +19,8 @@ Node newNode(Value val, Node left, Node right, Node parent, Node pathParent, int
 static void *mallocSafe(size_t nbytes) {
 	void *p = malloc(nbytes);
 	if (p == NULL) {
-		printf("Erro: alocação de memória falhou no módulo node.\n");
-		exit(0);
+		perror("Erro: alocação de memória falhou no módulo node.\n");
+		exit(EXIT_FAILURE);
 	}
 	return p;
 }

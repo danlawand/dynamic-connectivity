@@ -2,6 +2,7 @@
 #include "dynamic_forest.h"
 
 static Node *nodes;
+static void *mallocSafe(size_t);
 
 void dynamicForest(int n) {
     nodes = mallocSafe(n * sizeof(Node));
@@ -29,4 +30,13 @@ int connected(int i, int j) {
 
 int sizeTree(int i) {
     return size(findroot(nodes[i]));
+}
+
+static void *mallocSafe(size_t nbytes) {
+	void *p = malloc(nbytes);
+	if (p == NULL) {
+		perror("Erro: alocação de memória falhou no módulo node.\n");
+		exit(EXIT_FAILURE);
+	}
+	return p;
 }

@@ -1,5 +1,6 @@
 #include "splay.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static int valor = 0;
 static Node  root;
