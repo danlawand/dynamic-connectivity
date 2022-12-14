@@ -79,7 +79,6 @@ void handleFile(FILE* fp) {
     char delim[] = " ";
     char *ptr = NULL;
 
-    // Node nodes;
 
     // Todas as linhas terão 3 palavras, com exceção da primeira linha que só tem uma palavra
     while ((read = getline(&line, &len, fp)) != -1) {
@@ -96,7 +95,7 @@ void handleFile(FILE* fp) {
             primeira_linha = 0;
 
             // Cria a dynamic Forest com n_vertices
-            // nodes = dynamicForest(n_vertices);
+            // dynamicForest(n_vertices);
         } 
         // caso contrário eu vejo quais são as operações
         else
