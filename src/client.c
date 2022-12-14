@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// #include "forest.h"
+// #include "dynamic_forest.h"
 
 // Verifica se os argumentos de entrada estão corretos
 void checkInputArgs(int argc) {

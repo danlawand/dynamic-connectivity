@@ -1,5 +1,5 @@
-#ifndef _FOREST_H
-#define _FOREST_H
+#ifndef _DYNAMIC_FOREST_H
+#define _DYNAMIC_FOREST_H
 #include "lct.h"
 
 
@@ -11,6 +11,6 @@ void deleteEdge(int, int);
 
 int connected(int, int);
 
-int sizeForest(int);
+int sizeTree(int);
 
 #endif

@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "forest.h"
+#include "dynamic_forest.h"
 
 static Node *nodes;
 
@@ -27,6 +27,6 @@ int connected(int i, int j) {
     return 0;
 }
 
-int sizeForest(int i) {
+int sizeTree(int i) {
     return size(findroot(nodes[i]));
 }
