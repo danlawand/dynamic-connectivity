@@ -1,5 +1,6 @@
 #include "lct.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static void removePreferredChild(Node);
 static void switchPreferredChild(Node, Node);
@@ -28,6 +29,7 @@ void access(Node v) {
 // So min(w) of auxiliary tree is the root of the represented tree
 // W se torna a raiz da lct e o caminho preferencial vai até V
 void link(Node v, Node w) {
+	printf("Entrei\n");
 	access(v);
 	access(w);
 	join(w, v);

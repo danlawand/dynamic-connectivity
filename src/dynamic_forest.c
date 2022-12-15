@@ -6,6 +6,7 @@ static Node *nodes;
 static void *mallocSafe(size_t);
 
 void dynamicForest(int n) {
+    printf("Node entrei\n");
     nodes = mallocSafe(n * sizeof(Node));
 
     for (int i = 0; i < n; ++i) {
@@ -14,8 +15,13 @@ void dynamicForest(int n) {
 }
 
 void addEdge(int i, int j) {
-    evert(nodes[i]);
+    // evert(nodes[i]);
+    printf("Entrei no addEdge\n");
+    printf("%d\n", i);
+    printf("%d\n", nodes[i]->bit);
+    printf("PASSEI DO BIT\n");
     link(nodes[i], nodes[j]);
+    printf("Foi aqui\n");
 }
 
 void deleteEdge(int i, int j) {

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// #include "dynamic_forest.h"
+#include "dynamic_forest.h"
 
 // Verifica se os argumentos de entrada estão corretos
 void checkInputArgs(int argc) {
@@ -30,7 +30,7 @@ void executeOperation(char * first_word, char * second_word, char * third_word) 
         vertice2 = atoi(third_word);
         printf("Operação addEdge entre: %d e %d\n", vertice1, vertice2);
 
-        // addEdge(vertice1, vertice2);
+        addEdge(vertice1, vertice2);
 
     } else if (strcmp(first_word,"-") == 0)
     {
@@ -38,7 +38,7 @@ void executeOperation(char * first_word, char * second_word, char * third_word) 
         vertice2 = atoi(third_word);
         printf("Operação removeEdge entre: %d e %d\n", vertice1, vertice2);
 
-        // deleteEdge(vertice1, vertice2);
+        deleteEdge(vertice1, vertice2);
 
     } else if (strcmp(first_word,"c") == 0)
     {
@@ -46,14 +46,14 @@ void executeOperation(char * first_word, char * second_word, char * third_word) 
         vertice2 = atoi(third_word);
         printf("Operação Connected entre: %d e %d\n", vertice1, vertice2);
 
-        // if (connected(vertice1, vertice2))
-        // {
-        //     printf("Vertices %d e %d estão conectados\n", vertice1, vertice2);
-        // }
-        // else
-        // {
-        //     printf("Vertices %d e %d NÃO estão conectados\n", vertice1, vertice2);
-        // }
+        if (connected(vertice1, vertice2))
+        {
+            printf("Vertices %d  e %d estão conectados\n", vertice1, vertice2);
+        }
+        else
+        {
+            printf("Vertices %d e %d NÃO estão conectados\n", vertice1, vertice2);
+        }
     } else {
         perror("Erro no handleFile caracter não identificado. Não é '+', '-' ou 'c'.\n");
         exit(EXIT_FAILURE);
@@ -148,7 +148,7 @@ int main(int argc, char * argv[])
 
     // Lê o arquivo de entrada e Verifica se o arquivo de entrada existe
     FILE * arquivo_entrada;
-    arquivo_entrada = fopen("test1.txt", "r");
+    arquivo_entrada = fopen("tests/test1.txt", "r");
 	if (arquivo_entrada == NULL) {
 		perror("Error while opening the file of arquivo_entrada.\n");
 		exit(EXIT_FAILURE);
