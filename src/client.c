@@ -46,14 +46,9 @@ void executeOperation(char * first_word, char * second_word, char * third_word) 
         vertice2 = atoi(third_word);
         printf("Operação Connected entre: %d e %d\n", vertice1, vertice2);
 
-        if (connected(vertice1, vertice2))
-        {
-            printf("Vertices %d  e %d estão conectados\n", vertice1, vertice2);
-        }
-        else
-        {
-            printf("Vertices %d e %d NÃO estão conectados\n", vertice1, vertice2);
-        }
+        if (connected(vertice1, vertice2)) printf("Vertices %d  e %d estão conectados\n", vertice1, vertice2);
+        else printf("Vertices %d e %d NÃO estão conectados\n", vertice1, vertice2);
+        
     } else {
         perror("Erro no handleFile caracter não identificado. Não é '+', '-' ou 'c'.\n");
         exit(EXIT_FAILURE);
