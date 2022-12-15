@@ -9,7 +9,7 @@
 * addEdge, deleteEdge e connected estão funcionando
 * Remoção de erro no código da lct:
 ### Antigo
-'''
+´´´
 static void switchPreferredChild(Node w, Node v) {
 	if (w->children[1] != NULL) {
 		w->children[1]->pathParent = v;
@@ -19,13 +19,13 @@ static void switchPreferredChild(Node w, Node v) {
 	join(v, w);
 	v->pathParent = NULL;
 }
-'''
+´´´
 
 ### NOVO
-'''
+´´´
 	// v se torna filho direito de w
 	join(w, v);
-'''
+´´´
 
 ## Comentário 13/12/2022
 * Compile: gcc -g client.c -o client
