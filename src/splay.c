@@ -148,6 +148,10 @@ Node maxSplay(Node x) {
 }
 
 static Node maximum(Node x) {
+	if (x == NULL) {
+		perror("É NULL");
+		exit(EXIT_FAILURE);
+	}
 	// Dou pushBitDown, pois caso tenha um bit 1 nas subárvores, então, preciso passar para baixo, para saber qual caminho devo prosseguir
 	pushBitDown(x);
 	if (x->children[1-x->bit] == NULL) return x;
@@ -155,6 +159,7 @@ static Node maximum(Node x) {
 }
 
 static void pushBitDown(Node x) {
+	if (x == NULL) return;
 	if (x->bit == 1) {
 		swapChildren(x);
 		x->bit = 0;

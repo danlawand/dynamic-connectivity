@@ -31,6 +31,8 @@ void access(Node v) {
 void link(Node v, Node w) {
 	access(v);
 	access(w);
+
+	// v se torna filho direito de w
 	join(w, v);
 }
 
@@ -45,9 +47,14 @@ Node findroot(Node v) {
 	return m;
 }
 
-// retira a aresta 'v'-ij-'v->parent'
+// retira a aresta 'v'--'v->parent'
 void cut(Node v) {
 	access(v);
+	if (v->children[0] == NULL) {
+        perror("Erro no módulo cut v->children[0] é NULL.\n");
+        exit(EXIT_FAILURE);
+	}
+
 	Node m = maxSplay(v->children[0]);
 	split(m);
 }
@@ -77,6 +84,7 @@ static void switchPreferredChild(Node w, Node v) {
 		w->children[1]->pathParent = v;
 		w->children[1]->parent = NULL;
 	}
-	join(v, w);
+	// v se torna filho direito de w
+	join(w, v);
 	v->pathParent = NULL;
 }
