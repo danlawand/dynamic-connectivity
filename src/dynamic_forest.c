@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "dynamic_forest.h"
 
 static Node *nodes;
