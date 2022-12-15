@@ -29,7 +29,6 @@ void access(Node v) {
 // So min(w) of auxiliary tree is the root of the represented tree
 // W se torna a raiz da lct e o caminho preferencial vai até V
 void link(Node v, Node w) {
-	printf("Entrei\n");
 	access(v);
 	access(w);
 	join(w, v);

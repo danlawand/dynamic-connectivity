@@ -95,7 +95,7 @@ void handleFile(FILE* fp) {
             primeira_linha = 0;
 
             // Cria a dynamic Forest com n_vertices
-            // dynamicForest(n_vertices);
+            dynamicForest(n_vertices);
         } 
         // caso contrário eu vejo quais são as operações
         else
