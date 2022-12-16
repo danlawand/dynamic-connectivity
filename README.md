@@ -3,6 +3,7 @@
 ### TO-DO
 * Testes maiores para conectividade
 * Fazer um bom README orientando como executar
+* Alterar o código cliente para receber argumentos
 
 ## Comentário 14/12/2022
 * Criação do Makefile
