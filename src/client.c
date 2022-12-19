@@ -140,10 +140,9 @@ int main(int argc, char * argv[])
 	char flag_output = 'q';
 	if (argc == 4) flag_output = 'v';
 
-
     // Lê o arquivo de entrada e Verifica se o arquivo de entrada existe
     FILE * arquivo_entrada;
-    arquivo_entrada = fopen("tests/test1.txt", "r");
+    arquivo_entrada = fopen(argv[1], "r");
 	if (arquivo_entrada == NULL) {
 		perror("Error while opening the file of arquivo_entrada.\n");
 		exit(EXIT_FAILURE);
