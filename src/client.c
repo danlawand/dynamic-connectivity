@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "dynamic_forest.h"
 
 // Verifica se os argumentos de entrada estão corretos
@@ -20,8 +21,12 @@ void checkInputArgs(int argc) {
 }
 
 // Executa a operação desejada
-void executeOperation(char * first_word, char * second_word, char * third_word, FILE* output_file, char flag_output) {
+void executeOperation(char * first_word, char * second_word, char * third_word, FILE* output_file, char flag_output, double* metrics) {
     int vertice1, vertice2;
+
+    // Calculate the time taken by fun()
+    clock_t t;
+    double time_taken;
 
     // Verifica qual é a operação desejada pela linha e executa a operação
     if (strcmp(first_word,"+") == 0)
@@ -29,8 +34,13 @@ void executeOperation(char * first_word, char * second_word, char * third_word, 
         vertice1 = atoi(second_word);
         vertice2 = atoi(third_word);
         if (flag_output == 'v') printf("Operation addEdge between: %d and %d\n", vertice1, vertice2);
-
+        
+        t = clock();
         addEdge(vertice1, vertice2);
+        t = clock() - t;
+        time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
+        metrics[0] = metrics[0] + time_taken;
+        metrics[1] = metrics[1] + 1;
 
     } else if (strcmp(first_word,"-") == 0)
     {
@@ -38,15 +48,28 @@ void executeOperation(char * first_word, char * second_word, char * third_word, 
         vertice2 = atoi(third_word);
         if (flag_output == 'v') printf("Operation removeEdge between: %d and %d\n", vertice1, vertice2);
 
+        t = clock();
         deleteEdge(vertice1, vertice2);
+        t = clock() - t;
+        time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
+        metrics[0] = metrics[0] + time_taken;
+        metrics[1] = metrics[1] + 1;
 
     } else if (strcmp(first_word,"c") == 0)
     {
         vertice1 = atoi(second_word);
         vertice2 = atoi(third_word);
         if (flag_output == 'v') printf("Operation connected between: %d and %d\n", vertice1, vertice2);
+        
+        int is_connected; 
+        t = clock();
+        is_connected = connected(vertice1, vertice2);
+        t = clock() - t;
+        time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
+        metrics[0] = metrics[0] + time_taken;
+        metrics[1] = metrics[1] + 1;
 
-        if (connected(vertice1, vertice2)) {
+        if (is_connected) {
             printf("Vertices %d and %d are connected\n", vertice1, vertice2);
             fprintf(output_file, "YES\n");
         } else {
@@ -72,6 +95,7 @@ void handleFile(FILE* input_file, FILE* output_file, char flag_output) {
     int j = 0;
     int n_vertices = 0;
 
+    double metrics[2] = {0.0, 0.0};
 
     char * first_word = NULL;
     char * second_word = NULL;
@@ -79,10 +103,12 @@ void handleFile(FILE* input_file, FILE* output_file, char flag_output) {
     char delim[] = " ";
     char *ptr = NULL;
 
+    clock_t t;
+    double time_taken;
+
 
     // Todas as linhas terão 3 palavras, com exceção da primeira linha que só tem uma palavra
     while ((read = getline(&line, &len, input_file)) != -1) {
-
         // Depois retiro essas duas próximas linhas
         // printf("Retrieved line of length %zu:\n", read);
         // printf("%s", line);
@@ -95,7 +121,13 @@ void handleFile(FILE* input_file, FILE* output_file, char flag_output) {
             primeira_linha = 0;
 
             // Cria a dynamic Forest com n_vertices
+            t = clock();
             dynamicForest(n_vertices);
+            t = clock() - t;
+            time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
+
+            printf("Time taken to run dynamicForest: %f\n", time_taken);
+
         } 
         // caso contrário eu vejo quais são as operações
         else
@@ -124,9 +156,12 @@ void handleFile(FILE* input_file, FILE* output_file, char flag_output) {
             }
 
             // Executa a operação desejada
-            executeOperation(first_word, second_word, third_word, output_file, flag_output);
+            executeOperation(first_word, second_word, third_word, output_file, flag_output, metrics);
         }
     }
+    printf("Total amount of time taken to run addEdge, removeEdge and connected: %f\n", metrics[0]);
+    printf("Number of queries of type addEdge, removeEdge and connected: %f\n", metrics[1]);
+    if (metrics[1] != 0) printf("Avg of time taken to run addEdge, removeEdge and connected: %e\n", metrics[0]/metrics[1]);
 
     if (line) free(line);
     return;
