@@ -15,6 +15,10 @@
 * Explicação de como executar runtests
 	* chmod +x runtests.sh
 	* ./runtests.sh -t
+* Explicação de como executar seediff
+	* chmod +x seediff.sh
+	* ./seediff.sh -d (pra ver as diferenças)
+	* ./seediff.sh -s (pra ver qual foi bem sucedido e qual não)
 * Remoção de erro no código da lct:
 ### Antigo
 ```
