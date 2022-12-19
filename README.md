@@ -1,17 +1,17 @@
 # conexidade-dinamica
 
 ### TO-DO
-* Testes maiores para conectividade
 * Fazer um bom README orientando como executar
+	* Como adicionar um novo test
 
 ## Comentário 19/12/2022
-* Criar arquivo test
+* Criação de novos tests
+* Explicação de como criar arquivo test
 	* ter uma última linha vazia
 	* o número de vértices que se acreescenta no arquivo deve contar o vértice zero: n = 6 -> 0, 1, 2, 3, 4, 5
 * Explicação de como criar um arquivo de answer:
 	* criar um arquivo com NO and/or YES e sempre ter uma última linha vazia
 	* ao criar será preciso mudar o arquivo sh
-
 * Remoção de erro no código da lct:
 ### Antigo
 ```
