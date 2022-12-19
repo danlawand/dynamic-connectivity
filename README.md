@@ -12,6 +12,9 @@
 * Explicação de como criar um arquivo de answer:
 	* criar um arquivo com NO and/or YES e sempre ter uma última linha vazia
 	* ao criar será preciso mudar o arquivo sh
+* Explicação de como executar runtests
+	* chmod +x runtests.sh
+	* ./runtests.sh -t
 * Remoção de erro no código da lct:
 ### Antigo
 ```
