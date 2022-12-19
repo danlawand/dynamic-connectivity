@@ -81,7 +81,7 @@ static void removePreferredChild(Node v) {
 // torna v o preferred child de w. E ao antigo preferred child de w, o faz ser non-preferred-child e este tem o pathParent apontando para w.  
 static void switchPreferredChild(Node w, Node v) {
 	if (w->children[1] != NULL) {
-		w->children[1]->pathParent = v;
+		w->children[1]->pathParent = w;
 		w->children[1]->parent = NULL;
 	}
 	// v se torna filho direito de w

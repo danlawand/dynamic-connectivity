@@ -48,10 +48,10 @@ void executeOperation(char * first_word, char * second_word, char * third_word, 
 
         if (connected(vertice1, vertice2)) {
             printf("Vertices %d and %d are connected\n", vertice1, vertice2);
-            fprintf(output_file, "true\n");
+            fprintf(output_file, "YES\n");
         } else {
             printf("Vertices %d and %d are NOT connected\n", vertice1, vertice2);
-            fprintf(output_file, "false\n");
+            fprintf(output_file, "NO\n");
         }
         
     } else {
