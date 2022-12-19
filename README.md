@@ -1,14 +1,17 @@
 # Dynamic connectivity
 
-### README in Work In Progress
+### README In Progress
 
+### Acknowledgements
+This is work exists thanks to Institute of Mathematics and Statistics of University of São Paulo ([IME-USP](https://www.ime.usp.br/)), to [CNPq](https://www.gov.br/cnpq/pt-br) for the scholarship provided and to [Prof. Cristina Gomes Fernandes](https://www.ime.usp.br/~cris/).
 ### How to run
 * $ make
 * $ ./exe <test_name> <test_number> [flag_for_verbose_output]
+
 Or
-* make
-* chmod +x runtests.sh
-* ./runtests.sh -t
+* $ make
+* $ chmod +x runtests.sh
+* $ ./runtests.sh -t
 
 ### TO-DO
 * Fazer um bom README orientando como executar
