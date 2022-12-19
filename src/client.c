@@ -91,7 +91,7 @@ void handleFile(FILE* input_file, FILE* output_file, char flag_output) {
         if (primeira_linha)
         {
             n_vertices =  atoi(line);
-            // printf("n: %d\n", n_vertices);
+            printf("Test with %d vertices.\n", n_vertices);
             primeira_linha = 0;
 
             // Cria a dynamic Forest com n_vertices
