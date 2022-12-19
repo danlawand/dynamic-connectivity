@@ -176,12 +176,6 @@ static void pushBitDown(Node x) {
 	}
 }
 
-static Node sibling(Node x) {
-	Node p = x->parent;
-	if (p->children[0] == x) return p->children[1];
-	else return p->children[0];
-}
-
 static void swapChildren(Node p) {
 	Node aux = p->children[0];
 	p->children[0] = p->children[1];
