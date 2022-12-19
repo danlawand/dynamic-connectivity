@@ -14,24 +14,17 @@ void dynamicForest(int n) {
 }
 
 void addEdge(int i, int j) {
-    printf("evert(%d)\n", nodes[i]->val);
     evert(nodes[i]);
-    printf("link(%d, %d)\n", nodes[i]->val, nodes[j]->val);
     link(nodes[i], nodes[j]);
 }
 
 void deleteEdge(int i, int j) {
     // evert(i) faz com que i seja a raiz da LCT, assim, i é mais superficial do que j na LCT, portanto, se houver aresta entre i e j, j é filho de i na LCT
-    printf("evert(%d)\n", nodes[i]->val);
     evert(nodes[i]);
-    printf("cut(%d)\n", nodes[j]->val);
     cut(nodes[j]);
 }
 
 int connected(int i, int j) {
-    Node u = findroot(nodes[i]);
-    Node v = findroot(nodes[j]);
-    printf("root of i: %d and root of j: %d\n", u->val, v->val);
     if (findroot(nodes[i]) == findroot(nodes[j])) return 1;
     return 0;
 }
