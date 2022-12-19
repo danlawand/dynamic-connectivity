@@ -5,13 +5,11 @@
 static int valor = 0;
 static Node  root;
 
-static Node sibling(Node);
-
 static void swapChildren(Node);
 
 static void pushBitDown(Node);
 
-static void  rotate(Node);
+static void rotate(Node);
 
 static Node maximum(Node);
 
