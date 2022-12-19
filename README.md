@@ -4,6 +4,34 @@
 * Testes maiores para conectividade
 * Fazer um bom README orientando como executar
 
+## Comentário 19/12/2022
+* Criar arquivo test
+	* ter uma última linha vazia
+	* o número de vértices que se acreescenta no arquivo deve contar o vértice zero: n = 6 -> 0, 1, 2, 3, 4, 5
+* Explicação de como criar um arquivo de answer:
+	* criar um arquivo com NO and/or YES e sempre ter uma última linha vazia
+	* ao criar será preciso mudar o arquivo sh
+
+* Remoção de erro no código da lct:
+### Antigo
+```
+static void switchPreferredChild(Node w, Node v) {
+	if (w->children[1] != NULL) {
+		w->children[1]->pathParent = v;
+		w->children[1]->parent = NULL;
+	}
+	// w se torna filho direito de v
+	join(w, v);
+	v->pathParent = NULL;
+}
+```
+
+### NOVO
+```
+		w->children[1]->pathParent = w;
+```
+
+
 ## Comentário 14/12/2022
 * Criação do Makefile
 * Teste com inserção, remoção e consulta 
