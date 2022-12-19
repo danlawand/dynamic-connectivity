@@ -1,4 +1,14 @@
-# conexidade-dinamica
+# Dynamic connectivity
+
+### README in Work In Progress
+
+### How to run
+* $ make
+* $ ./exe <test_name> <test_number> [flag_for_verbose_output]
+Or
+* make
+* chmod +x runtests.sh
+* ./runtests.sh -t
 
 ### TO-DO
 * Fazer um bom README orientando como executar
