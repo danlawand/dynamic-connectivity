@@ -9,9 +9,42 @@ This work exists thanks to Institute of Mathematics and Statistics of University
 * $ ./exe <test_name> <test_number> [flag_v_for_verbose_output]
 
 Or
-* $ make
 * $ chmod +x runtests.sh
 * $ ./runtests.sh -t
+
+
+Example of output after running ./runtests -t
+
+```
+$ ./runtests.sh -t
+[CC] src/client.c
+[CC] src/dynamic_forest.c
+[CC] src/lct.c
+[CC] src/splay.c
+[CC] src/node.c
+[CC] src/item.c
+[INFO] Creating Binary Executable for Iterative File [exe]
+------- Running function runningTests -------
+--- Running test1 ---
+Result test file name: tests/results/result_test1
+Test with 10 vertices.
+Time taken to run dynamicForest: 0.000003
+Vertices 6 and 5 are NOT connected
+Total amount of time taken to run addEdge, removeEdge and connected: 0.000010
+Number of queries of type addEdge, removeEdge and connected: 10
+Avg of time taken to run addEdge, removeEdge and connected: 1.000000e-06
+--- Running test2 ---
+Result test file name: tests/results/result_test2
+Test with 6 vertices.
+Time taken to run dynamicForest: 0.000002
+Vertices 1 and 5 are NOT connected
+Vertices 1 and 5 are connected
+Vertices 1 and 5 are NOT connected
+Vertices 1 and 5 are connected
+Total amount of time taken to run addEdge, removeEdge and connected: 0.000013
+Number of queries of type addEdge, removeEdge and connected: 11
+Avg of time taken to run addEdge, removeEdge and connected: 1.181818e-06
+```
 
 ### TO-DO
 * Fazer um bom README orientando como executar
