@@ -160,7 +160,7 @@ void handleFile(FILE* input_file, FILE* output_file, char flag_output) {
         }
     }
     printf("Total amount of time taken to run addEdge, removeEdge and connected: %f\n", metrics[0]);
-    printf("Number of queries of type addEdge, removeEdge and connected: %f\n", metrics[1]);
+    printf("Number of queries of type addEdge, removeEdge and connected: %d\n", (int)metrics[1]);
     if (metrics[1] != 0) printf("Avg of time taken to run addEdge, removeEdge and connected: %e\n", metrics[0]/metrics[1]);
 
     if (line) free(line);

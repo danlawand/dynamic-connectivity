@@ -3,7 +3,7 @@
 make
 
 function runningTests() {
-    for i in {1..6}
+    for i in {1..8}
     do
         echo "--- Running test${i} ---"
         ./exe ./tests/test${i} ${i}

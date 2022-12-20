@@ -2,7 +2,7 @@
 
 function whichDifference() {
     mkdir ./tests/diff
-    for i in {1..6}
+    for i in {1..8}
     do
         echo "Comparining answer_test${i} with result_test${i}"
         diff -u ./tests/answers/answer_test${i} ./tests/results/result_test${i} > ./tests/diff/difference${i}
@@ -12,7 +12,7 @@ function whichDifference() {
 
 
 function failedOrSucessed() {
-    for i in {1..6}
+    for i in {1..8}
     do
         if cmp --silent -- ./tests/answers/answer_test${i} ./tests/results/result_test${i}; then
         echo "Test${i} Sucessed!"
