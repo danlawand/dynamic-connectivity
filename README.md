@@ -46,24 +46,81 @@ Number of queries of type addEdge, removeEdge and connected: 11
 Avg of time taken to run addEdge, removeEdge and connected: 1.181818e-06
 ```
 
-### TO-DO
-* Fazer um bom README orientando como executar
-	* Como adicionar um novo test
-* Explicação de como criar arquivo test
-	* ter uma última linha vazia
-	* o número de vértices que se acreescenta no arquivo deve contar o vértice zero: n = 6 -> 0, 1, 2, 3, 4, 5
-    * deve ter o seguinte formato:
-        - primeira linha é a quantidade de vértices
-        - próximas linhas no padrão a seguir: "+ X Y" ou "- X Y" ou "c X Y"
-		- última linha vazia
-* Explicação de como criar um arquivo de answer:
-	* criar um arquivo com NO and/or YES e sempre ter uma última linha vazia
-	* ao criar será preciso mudar o arquivo sh
-* Explicação de como executar runtests
-	* chmod +x runtests.sh
-	* ./runtests.sh -t
-* Explicação de como executar seediff
-	* chmod +x seediff.sh
-	* ./seediff.sh -d (pra ver as diferenças)
-	* ./seediff.sh -s (pra ver qual foi bem sucedido e qual não)
-* Informação do compilador?
+### How to run seediff.sh file
+* The file's goal is to indentify which test had the right output and those which had the wrong output, and to see what output was wrong.
+* To run seediff.sh, you must do the following:
+	* $ chmod +x seediff.sh
+	* $ ./seediff.sh -d 
+		* (To identify the differences bewteen the answer and the test output)
+	* $ ./seediff.sh -s 
+		* (to identify which test had the right output)
+
+
+### How to create a new test
+* Add a file in the directory "tests"
+* The file's name must be "test<test_number>"
+* The file's first line must be a integer between 1 and 2147483647
+	* This line indicates the number of vertices
+		* If the first line contains the number 3, so the number of vertices are 3, but these vertices are indicated as 0, 1 and 2. There is not a vertice labeled as 3.
+* The other lines must follow the following pattern:
+	1. \+ X Y
+	2. \- X Y
+	3. c X Y
+	- Where X and Y are integers between 1 and the number of vertices, and
+		- '\+' indicates add edge operation
+		- \'-' indicates remove edge operation
+		- 'c' indicates connected query
+* The last line must be empty
+* Example of a file named "test5"
+```
+6
++ 1 2
++ 4 5
+c 4 5
+c 4 1
+c 1 2
+
+```
+
+### How to update the runtests.sh file
+* After you added a new test, you can update the runtests.sh file, to run all the tests including the new one.
+* You'll need to update the maximum test number you wanna run, in the loop:
+```
+    for i in {1..<MAX_TEST_NUMBER>}
+```
+### How to create a new answer file
+* Add a file in the /tests/answers/ directory
+* The file's name must be "answer_test<TEST_NUMBER>"
+	* This is the answer of the test "test<TEST_NUMBER>
+* This file contains the answers of the queries contained in the "test<TEST_NUMBER>".
+	* So if there are 3 queries in the format "c X Y", your answer file requires 3 answers for those queries.
+	* The answers are in the format "YES" or "NO"
+* The last line must be empty
+* Example of a file "answer_test5"
+```
+YES
+NO
+YES
+
+``` 
+### How to update the seediff.sh file
+* After you added a new answer_test, you can update the seediff.sh file, to verify if the tests are returning the right output.
+* You'll need to update the number of the tests number you wanna verify, in the loop:
+```
+    for i in {1..<TEST_NUMBER>}
+```
+
+```
+function whichDifference() {
+    mkdir ./tests/diff
+    for i in {1..<TEST_NUMBER>}
+    ...
+}
+
+
+function failedOrSucessed() {
+    for i in {1..<TEST_NUMBER>}
+    ...
+}
+
+```
